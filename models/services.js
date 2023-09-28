@@ -56,7 +56,7 @@ export class ServiceModel {
       }
     }
     catch (e) {
-      throw e;
+      throw new Error("No se pudo crear el servicio");
     }
     return false;
   }
@@ -72,7 +72,7 @@ export class ServiceModel {
       }
     }
     catch (e) {
-      throw e;
+      throw new Error("No se pudo eliminar el servicio");
     }
     return false;
   }
