@@ -2,10 +2,18 @@
   "name": "tp-dsw-back",
   "version": "1.0.0",
   "description": "Lara: categorias\r Pedro: servicios\r Agus: productos\r Fran: usuarios",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "3.6.1"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0"
+  }
 }
