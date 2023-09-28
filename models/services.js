@@ -12,13 +12,12 @@ const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;
 
 const connection = await mysql.createConnection(connectionString);
 
-export class ServiceModel {
+export class ServicesModel {
 
-  static async getall() {
+  static async getAll() {
     const services = await connection.query(
       `SELECT *
-      FROM servicios;`
-    );
+      FROM servicios;`);
     return services[0];
   }
 
@@ -32,26 +31,26 @@ export class ServiceModel {
     if (service.length == 0) {
       return null;
     }
-    return services[0];
+    return service[0];
   }
 
   static async create({ service }) {
     const {
-      desc,
+      description,
       hourValue
     } = service;
 
     try {
       await connection.query(
         `INSERT INTO servicios(desc_servicio, precio_por_hora)
-        VALUES (?,?);`, [desc, hourValue]
+        VALUES (?,?);`, [description, hourValue]
       );
       const [serv] = await connection.query(
         `SELECT * 
         FROM servicios
-        WHERE desc_servicio=?;`, [desc]
+        WHERE desc_servicio=?;`, [description]
       );
-      if (service.length != 0) {
+      if (serv.length != 0) {
         return serv[0];
       }
     }
@@ -67,7 +66,7 @@ export class ServiceModel {
         `DELETE FROM servicios
         WHERE id_servicio=?;`, [id]
       );
-      if (result[0].affectedRows == 0) {
+      if (result[0].affectedRows == 1) {
         return true;
       }
     }
@@ -91,15 +90,15 @@ export class ServiceModel {
     const oldService = oldServ[0][0];
 
     const {
-      desc: newDesc = oldService.desc_servicio,
-      hourVal: newHourVal = oldService.precio_por_hora
+      description: newDesc = oldService.desc_servicio,
+      hourValue: newHourVal = oldService.precio_por_hora
     } = serv;
 
     try {
       await connection.query(
         `UPDATE servicios
         SET desc_servicio=?, precio_por_hora=? 
-        WHERE id_servicio=?;`, [newDesc, newHourVal]
+        WHERE id_servicio=?;`, [newDesc, newHourVal, id]
       );
       const newService = await connection.query(
         `SELECT *
@@ -111,7 +110,7 @@ export class ServiceModel {
       }
     }
     catch (e) {
-      throw e;
+      throw new Error("No se pudo actualizar el producto");
     }
     return false;
   }

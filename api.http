@@ -1,0 +1,34 @@
+### Buscar todos los servicios
+
+GET http://localhost:1234/services
+
+
+### Buscar un servicio por id
+
+GET http://localhost:1234/services/5
+
+
+### Crear un servicio
+
+POST http://localhost:1234/services
+Content-Type: application/json
+
+{
+  "description":"Fumigación",
+  "hourValue":60500
+}
+
+
+### Actualizar un servicio
+
+PATCH http://localhost:1234/services/6
+Content-Type: application/json
+
+{
+  "hourValue":70000
+}
+
+
+### Borrar un servicio
+
+DELETE http://localhost:1234/services/2

@@ -2,15 +2,16 @@
   "name": "tp-dsw-back",
   "version": "1.0.0",
   "description": "Lara: categorias\r Pedro: servicios\r Agus: productos\r Fran: usuarios",
-  "main": "index.js",
+  "type": "module",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev1": "node --watch server-mysql.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "2.8.5",
-    "dotenv": "16.3.1",
     "express": "4.18.2",
     "mysql2": "3.6.1",
     "zod": "3.22.2"
