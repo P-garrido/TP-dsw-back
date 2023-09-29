@@ -1,15 +1,22 @@
-import express, { json }  from "express";
+import express, { json } from "express";
+import { createServiceRouter } from "./routes/services.js";
+import { corsMiddleware } from "./middlewares/cors.js";
 import { createUserRouter } from "./routes/users.js";
 
-export const createApp = ({ userModel }) => {
-  const app = express()
-  app.use(json())
+export const createApp = ({ servicesModel }) => {
+  const app = express();
+  app.use(json());
+  app.disable("x-powered-by");
+  app.use(corsMiddleware());
 
+  app.use('/services', createServiceRouter({ servicesModel }));
   app.use('/users', createUserRouter({ userModel }))
 
-  const PORT = 3000
+  const PORT = process.env.PORT ?? 1234;
+
 
   app.listen(PORT, () => {
-    console.log('server listening on port http://localhost:3000')
+    console.log(`server listening on port http://localhost:${PORT}`);
+
   })
 }
