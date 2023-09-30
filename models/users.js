@@ -46,28 +46,28 @@ export class UserModel {
     return newUser[0]
   }
 
-  static async modifyUser({ id, input }) {
-    const oldUserContainer = await connection.query('select * from usuarios where id_usuario = ?', [id])
-    if (oldUserContainer.length === 0) {
-      throw new Error("Usuario no encontrado")
-    }
-    const oldUser = oldUserContainer[0][0]
-    const {
-      nombre_usuario = oldUser.nombre_usuario,
-      clave = oldUser.clave,
-      email = oldUser.email,
-      telefono = oldUser.telefono,
-      nombre = oldUser.nombre,
-      apellido = oldUser.apellido,
-      direccion = oldUser.direccion,
-      tipo_usuario = oldUser.tipo_usuario
-    } = input;
-    await connection.query(`update usuarios set nombre_usuario = ?, clave = ?, email = ?, telefono = ?, 
-    nombre = ?, apellido = ?, direccion = ?, tipo_usuario = ? where id_usuario = ?`, [nombre_usuario, clave, email, telefono, nombre, apellido, direccion, tipo_usuario, id])
-    const updatedUser = await connection.query('select * from usuarios where id_usuario = ?', [id])
-    if (!updatedUser) {
-      throw new Error('Error actualizando el usuario')
-    }
-    return updatedUser
-  }
+  // static async modifyUser({ id, input }) {
+  //   const oldUserContainer = await connection.query('select * from usuarios where id_usuario = ?', [id])
+  //   if (oldUserContainer.length === 0) {
+  //     throw new Error("Usuario no encontrado")
+  //   }
+  //   const oldUser = oldUserContainer[0][0]
+  //   const {
+  //     nombre_usuario = oldUser.nombre_usuario,
+  //     clave = oldUser.clave,
+  //     email = oldUser.email,
+  //     telefono = oldUser.telefono,
+  //     nombre = oldUser.nombre,
+  //     apellido = oldUser.apellido,
+  //     direccion = oldUser.direccion,
+  //     tipo_usuario = oldUser.tipo_usuario
+  //   } = input;
+  //   await connection.query(`update usuarios set nombre_usuario = ?, clave = ?, email = ?, telefono = ?, 
+  //   nombre = ?, apellido = ?, direccion = ?, tipo_usuario = ? where id_usuario = ?`, [nombre_usuario, clave, email, telefono, nombre, apellido, direccion, tipo_usuario, id])
+  //   const updatedUser = await connection.query('select * from usuarios where id_usuario = ?', [id])
+  //   if (!updatedUser) {
+  //     throw new Error('Error actualizando el usuario')
+  //   }
+  //   return updatedUser
+  // }
 }

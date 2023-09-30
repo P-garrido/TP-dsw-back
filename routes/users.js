@@ -10,7 +10,7 @@ export const createUserRouter = ({ userModel }) => {
   userRouter.get('/:id', userController.getUserById)
   userRouter.delete('/:id', userController.deleteUserById)
   userRouter.post('/', userController.createUser)
-  userRouter.patch('/:id', userController.modifyUser)
+  //userRouter.patch('/:id', userController.modifyUser)
 
   return userRouter
 }

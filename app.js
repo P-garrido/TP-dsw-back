@@ -3,7 +3,7 @@ import { createServiceRouter } from "./routes/services.js";
 import { corsMiddleware } from "./middlewares/cors.js";
 import { createUserRouter } from "./routes/users.js";
 
-export const createApp = ({ servicesModel }) => {
+export const createApp = ({ servicesModel, userModel }) => {
   const app = express();
   app.use(json());
   app.disable("x-powered-by");
