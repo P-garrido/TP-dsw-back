@@ -46,15 +46,14 @@ GET http://localhost:1234/users
 GET http://localhost:1234/users/1
 
 ### borrar un usuario
-DELETE http://localhost:1234/users/5
+DELETE http://localhost:1234/users/1
 
 ### agregar un usuario
 POST http://localhost:1234/users
 Content-Type: application/json
 
 {
-    "id_usuario": 1,
-    "nombre_usuario": "francisco0",
+    "nombre_usuario": "francisco00",
     "clave": "12345",
     "email": "francisco@gmail",
     "telefono": "123456",
@@ -69,6 +68,6 @@ PATCH http://localhost:1234/users/1
 Content-Type: application/json
 
 {
-    "direccion": "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "direccion": "aaaaaaaaaaaaaaaaaaaaaaaaaaa"
   }
 
