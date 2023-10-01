@@ -47,11 +47,11 @@ export class UserController {
     else {
       res.status(400).json({ error: JSON.parse(result.error.message) })
     }
+  }
 
-    modifyUser = async (req, res) => {
-      const { id } = req.params
-      const updatedUser = await this.userModel.modifyUser({ id, input: req.body })
-      return res.json(updatedUser)
-    }
+  modifyUser = async (req, res) => {
+    const { id } = req.params
+    const updatedUser = await this.userModel.modifyUser({ id, input: req.body })
+    return res.json(updatedUser)
   }
 }

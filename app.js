@@ -5,7 +5,7 @@ import { createServicesClientsRouter } from "./routes/services-clients.js";
 import { createUserRouter } from "./routes/users.js";
 
 
-export const createApp = ({ servicesModel, servicesClientsModel }) => {
+export const createApp = ({ servicesModel, servicesClientsModel, userModel }) => {
   const app = express();
   app.use(json());
   app.disable("x-powered-by");
