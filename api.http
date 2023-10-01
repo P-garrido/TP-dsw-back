@@ -1,3 +1,5 @@
+////Requests de servicios
+
 ### Buscar todos los servicios
 
 GET http://localhost:1234/services
@@ -33,6 +35,7 @@ Content-Type: application/json
 
 DELETE http://localhost:1234/services/2
 
+//// Requests de 
 
 
 ### Buscar todos los servicios de los clientes
@@ -71,3 +74,42 @@ Content-Type: application/json
 {
   "hourAmmount":3
 }
+
+
+
+
+//// Requests de Usuarios
+
+### obtener todos los usuarios
+GET http://localhost:3000/users
+
+### obtener un usuario por id
+GET http://localhost:3000/users/1
+
+### borrar un usuario
+DELETE http://localhost:3000/users/2
+
+### agregar un usuario
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "id_usuario": 5,
+    "nombre_usuario": "francisco",
+    "clave": "12345",
+    "email": "francisco@gmail",
+    "telefono": "123456",
+    "nombre": "Franciscoooooo",
+    "apellido": "Figueroa Casas",
+    "direccion": "Newbery 9063",
+    "tipo_usuario": 2
+  }
+
+### actualizar un usuario
+PATCH http://localhost:3000/users/1
+Content-Type: application/json
+
+{
+    "direccion": "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  }
+
