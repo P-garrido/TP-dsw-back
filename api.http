@@ -32,3 +32,42 @@ Content-Type: application/json
 ### Borrar un servicio
 
 DELETE http://localhost:1234/services/2
+
+
+
+### Buscar todos los servicios de los clientes
+
+GET http://localhost:1234/services-clients
+
+
+### Buscar un servicio de un cliente por id
+
+GET http://localhost:1234/services-clients/5/2
+
+
+### Crear un nuevo servicio de un cliente
+
+POST http://localhost:1234/services-clients
+Content-Type: application/json
+
+{
+  "idServ": 6,
+  "idCli":2,
+  "hourAmmount":3
+}
+
+
+### Borrar un servicio de un cliente por id
+
+DELETE http://localhost:1234/services-clients/5/1
+
+
+
+### Actualizar un servicio
+
+PATCH http://localhost:1234/services-clients/5/2
+Content-Type: application/json
+
+{
+  "hourAmmount":3
+}
