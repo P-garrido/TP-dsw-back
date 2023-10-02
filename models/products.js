@@ -41,23 +41,16 @@ export class ProductModel {
       nombre_producto,
       desc_producto,
       stock,
-      id_categoria,
       precio,
       imagen,
     } = input;
-    await connection.query('insert into usuarios values (?,?,?,?,?,?,?,?,?)', [
-      id_producto,
-      nombre_producto,
-      desc_producto,
-      stock,
-      id_categoria,
-      precio,
-      imagen,
-    ]);
-    const [newProduct] = await connection.query(
-      'select * from productos where id_producto = ?',
-      [id_producto]
+    await connection.query(
+      'insert into productos (nombre_producto, desc_producto, stock, precio, imagen) values (?,?,?,?,?)',
+      [nombre_producto, desc_producto, stock, precio, imagen]
     );
-    return newProduct[0];
+    const [newProduct] = await connection.query('select * from productos', [
+      id_producto,
+    ]);
+    return newProduct;
   }
 }

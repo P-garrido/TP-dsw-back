@@ -16,7 +16,7 @@ export class ProductController {
 
   getProductById = async (req, res) => {
     const id = req.params;
-    const product = await this.userProduct.getProductById(id);
+    const product = await this.productModel.getProductById(id);
     if (product) {
       res.json(product);
     } else {
