@@ -53,4 +53,24 @@ export class ProductModel {
     ]);
     return newProduct;
   }
+
+  static async updateProduct({ input }) {
+    const {
+      id_producto,
+      nombre_producto,
+      desc_producto,
+      stock,
+      precio,
+      imagen,
+    } = input;
+    await connection.query(
+      'UPDATE productos SET nombre_producto=?, desc_producto=?, stock=?, precio=?, imagen=? WHERE id_producto=?',
+      [nombre_producto, desc_producto, stock, precio, imagen, id_producto]
+    );
+    const [newProduct] = await connection.query(
+      'SELECT * FROM productos WHERE id_producto = ?',
+      [id_producto]
+    );
+    return newProduct;
+  }
 }

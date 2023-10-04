@@ -43,4 +43,14 @@ export class ProductController {
       res.status(400).json({ error: JSON.parse(result.error.message) });
     }
   };
+
+  updateProduct = async (req, res) => {
+    const result = req.body;
+    const newProduct = await this.productModel.updateProduct({ input: result });
+    if (newProduct) {
+      res.status(201).json(newProduct);
+    } else {
+      res.status(400).json({ message: 'No se pudo actualizar el producto' });
+    }
+  };
 }

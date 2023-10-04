@@ -10,6 +10,6 @@ export const createProductRouter = ({ productModel }) => {
   productRouter.get('/:id', productController.getProductById);
   productRouter.delete('/:id', productController.deleteProductById);
   productRouter.post('/', productController.createProduct);
-
+  productRouter.patch('/', productController.updateProduct);
   return productRouter;
 };
