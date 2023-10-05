@@ -16,8 +16,8 @@ POST http://localhost:1234/services
 Content-Type: application/json
 
 {
-  "description":"Fumigación",
-  "hourValue":60500
+  "description":"bdb",
+  "hourValue":123
 }
 
 
@@ -34,6 +34,49 @@ Content-Type: application/json
 ### Borrar un servicio
 
 DELETE http://localhost:1234/services/2
+
+//// Requests de Servicios-Clientes
+
+
+### Buscar todos los servicios de los clientes
+
+GET http://localhost:1234/services-clients
+
+
+### Buscar un servicio de un cliente por id
+
+GET http://localhost:1234/services-clients/3/2/2023-10-05
+
+
+
+### Crear un nuevo servicio de un cliente
+
+POST http://localhost:1234/services-clients
+Content-Type: application/json
+
+{
+  "idServ": 3,
+  "idCli":2,
+  "date":"2023-10-08T15:30:00.000Z",
+  "hourAmmount":3
+}
+
+
+### Borrar un servicio de un cliente por id
+
+DELETE http://localhost:1234/services-clients/3/2/2023-10-08
+
+
+
+### Actualizar un servicio
+
+PATCH http://localhost:1234/services-clients/3/2/2023-10-08
+Content-Type: application/json
+
+{
+  "hourAmmount":5
+}
+
 
 
 
