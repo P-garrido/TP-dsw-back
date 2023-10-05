@@ -1,12 +1,19 @@
 import mysql from 'mysql2/promise';
 
+// const DEFAULT_CONFIG = {
+//   host: 'localhost',
+//   user: 'root',
+//   port: 3306,
+//   password: 'agus3278',
+//   database: 'tpdsw',
+// };
 const DEFAULT_CONFIG = {
   host: 'localhost',
   user: 'root',
   port: 3306,
-  password: 'agus3278',
-  database: 'tpdsw',
-};
+  password: '',
+  database: 'TPdsw'
+}
 
 const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;
 

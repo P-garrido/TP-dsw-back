@@ -14,11 +14,9 @@ const serviceClientSchema = z.object({
     invalid_type_error: "La fecha del servicio tiene que ser una fecha y hora.",
     required_error: 'La fecha del servicio es requerida.'
   }),
-  hourAmmount: z.number({
-    invalid_type_error: "La cantidad de horas tiene que ser un entero.",
-    required_error: 'La cantidad de horas es requerida.'
-  }).positive()
-})
+  hourAmmount: z.number().positive().optional().nullable()
+});
+
 
 export function validateServiceClient(serviceClient) {
   return serviceClientSchema.safeParse(serviceClient);
