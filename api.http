@@ -7,7 +7,7 @@ GET http://localhost:1234/services
 
 ### Buscar un servicio por id
 
-GET http://localhost:1234/services/5
+GET http://localhost:1234/services/1
 
 
 ### Crear un servicio
@@ -23,7 +23,7 @@ Content-Type: application/json
 
 ### Actualizar un servicio
 
-PATCH http://localhost:1234/services/6
+PATCH http://localhost:1234/services/1
 Content-Type: application/json
 
 {
@@ -83,21 +83,20 @@ Content-Type: application/json
 //// Requests de Usuarios
 
 ### obtener todos los usuarios
-GET http://localhost:3000/users
+GET http://localhost:1234/users
 
 ### obtener un usuario por id
-GET http://localhost:3000/users/1
+GET http://localhost:1234/users/1
 
 ### borrar un usuario
-DELETE http://localhost:3000/users/2
+DELETE http://localhost:1234/users/1
 
 ### agregar un usuario
-POST http://localhost:3000/users
+POST http://localhost:1234/users
 Content-Type: application/json
 
 {
-    "id_usuario": 5,
-    "nombre_usuario": "francisco",
+    "nombre_usuario": "francisco00",
     "clave": "12345",
     "email": "francisco@gmail",
     "telefono": "123456",
@@ -108,10 +107,10 @@ Content-Type: application/json
   }
 
 ### actualizar un usuario
-PATCH http://localhost:3000/users/1
+PATCH http://localhost:1234/users/1
 Content-Type: application/json
 
 {
-    "direccion": "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "direccion": "aaaaaaaaaaaaaaaaaaaaaaaaaaa"
   }
 

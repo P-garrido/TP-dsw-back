@@ -1,4 +1,4 @@
-//importar validadores
+import {validateUser, validatePartialUser} from '../schemas/users.js';
 
 export class UserController {
   constructor({ userModel }) {
@@ -39,19 +39,24 @@ export class UserController {
   }
 
   createUser = async (req, res) => {
-    const result = req.body
-    const newUser = await this.userModel.createUser({ input: result })
-    if (newUser) {
-      res.status(201).json(newUser)
+    const result = validateUser(req.body)
+    
+    if (!result.success){
+      return res.status(400).json({error: JSON.parse(result.error.message)})
     }
-    else {
-      res.status(400).json({ error: JSON.parse(result.error.message) })
-    }
+
+    const newUser = await this.userModel.createUser({ input: result.data })
+    res.status(201).json(newUser)
   }
 
-  modifyUser = async (req, res) => {
-    const { id } = req.params
-    const updatedUser = await this.userModel.modifyUser({ id, input: req.body })
-    return res.json(updatedUser)
-  }
+    modifyUser = async (req, res) => {
+      const result = validatePartialUser(req.body)
+      if (!result.success){
+        return res.status(400).json({error: JSON.parse(result.error.message)})
+      }
+      const {id} = req.params
+      const updatedUser = await this.userModel.modifyUser({ id, input: result.data })
+      return res.json(updatedUser)
+    }
 }
+
