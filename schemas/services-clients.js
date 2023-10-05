@@ -10,6 +10,10 @@ const serviceClientSchema = z.object({
     invalid_type_error: "El id del servicio tiene que ser un entero.",
     required_error: 'El id del servicio es requerido.'
   }).positive(),
+  date: z.coerce.date({
+    invalid_type_error: "La fecha del servicio tiene que ser una fecha y hora.",
+    required_error: 'La fecha del servicio es requerida.'
+  }),
   hourAmmount: z.number({
     invalid_type_error: "La cantidad de horas tiene que ser un entero.",
     required_error: 'La cantidad de horas es requerida.'

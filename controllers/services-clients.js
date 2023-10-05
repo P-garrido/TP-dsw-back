@@ -15,8 +15,8 @@ export class ServicesClientsController {
   getById = async (req, res) => {
     const idServ = req.params.idServ;
     const idCli = req.params.idCli;
-    console.log(idServ, idCli);
-    const servCli = await this.servicesClientsModel.getById({ idServ, idCli });
+    const date = req.params.date;
+    const servCli = await this.servicesClientsModel.getById({ idServ, idCli, date });
     res.json(servCli);
   }
 
@@ -33,7 +33,8 @@ export class ServicesClientsController {
   delete = async (req, res) => {
     const idServ = req.params.idServ;
     const idCli = req.params.idCli;
-    const result = await this.servicesClientsModel.delete({ idCli, idServ });
+    const date = req.params.date;
+    const result = await this.servicesClientsModel.delete({ idCli, idServ, date });
     if (!result) {
       return res.status(404).json({ message: "No se pudo eliminar el servicio del cliente" });
     }
@@ -47,7 +48,8 @@ export class ServicesClientsController {
     }
     const idServ = req.params.idServ;
     const idCli = req.params.idCli;
-    const updatedServCli = await this.servicesClientsModel.update({ idServ, idCli, newHourAmmount: result.data });
+    const date = req.params.date;
+    const updatedServCli = await this.servicesClientsModel.update({ idServ, idCli, newHourAmmount: result.data, date });
     return res.json(updatedServCli);
   }
 }

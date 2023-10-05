@@ -27,12 +27,12 @@ export class ServicesClientsModel {
 
   }
 
-  static async getById({ idServ, idCli }) {
+  static async getById({ idServ, idCli, date }) {
     try {
       const servCli = await connection.query(
         `SELECT *
       FROM clientes_servicios
-      WHERE id_servicio=? AND id_usuario=?;`, [idServ, idCli]
+      WHERE id_servicio=? AND id_usuario=? AND fecha_servicio like ?;`, [idServ, idCli, date + '%']
       );
 
       if (servCli.length == 0) {
@@ -41,6 +41,7 @@ export class ServicesClientsModel {
       return servCli[0];
     }
     catch (e) {
+      console.log(e);
       throw new Error("No se puede devolver el servicio del cliente");
     }
   }
@@ -49,18 +50,19 @@ export class ServicesClientsModel {
     const {
       idServ,
       idCli,
+      date,
       hourAmmount
     } = servCli;
 
     try {
       await connection.query(
-        `INSERT INTO clientes_servicios (id_servicio, id_usuario, cant_horas)
-     VALUES (?,?,?);`, [idServ, idCli, hourAmmount]
+        `INSERT INTO clientes_servicios (id_servicio, id_usuario, fecha_servicio, cant_horas)
+     VALUES (?,?,?,?);`, [idServ, idCli, date, hourAmmount]
       );
       const [newServCli] = await connection.query(
         `SELECT *
-        FROM clientes_servicios
-        WHERE id_usuario=? AND id_servicio=?;`, [idCli, idServ]
+      FROM clientes_servicios
+      WHERE id_servicio=? AND id_usuario=? AND fecha_servicio = ?;`, [idServ, idCli, date]
       );
       if (newServCli.length != 0) {
         return newServCli[0];
@@ -68,18 +70,18 @@ export class ServicesClientsModel {
 
     }
     catch (e) {
+      console.log(e);
       throw new Error("No se puede crear el servicio del cliente");
     }
     return false;
   }
 
-  static async delete({ idCli, idServ }) {
-    console.log(idServ, idCli);
+  static async delete({ idCli, idServ, date }) {
     try {
       const result = await connection.query(
         `DELETE
         FROM clientes_servicios
-        WHERE id_servicio=? AND id_usuario=?;`, [idServ, idCli]
+        WHERE id_servicio=? AND id_usuario=? AND fecha_servicio like ?;`, [idServ, idCli, date + '%']
       );
       if (result[0].affectedRows == 1) {
         return true;
@@ -91,13 +93,13 @@ export class ServicesClientsModel {
     return false;
   }
 
-  static async update({ idServ, idCli, newHourAmmount }) {
+  static async update({ idServ, idCli, newHourAmmount, date }) {
 
     try {
       const oldServCli = await connection.query(
         `SELECT *
         FROM clientes_servicios
-        WHERE id_servicio=? AND id_usuario=?;`, [idServ, idCli]
+        WHERE id_servicio=? AND id_usuario=? AND fecha_servicio like ?;`, [idServ, idCli, date + '%']
       );
 
       if (oldServCli.length == 0) {
@@ -106,17 +108,17 @@ export class ServicesClientsModel {
 
       const oldServCliObject = oldServCli[0][0];
 
-      const { hourAmmount = oldServCli.cant_horas } = newHourAmmount;
+      const { hourAmmount = oldServCliObject.cant_horas } = newHourAmmount;
 
       await connection.query(
         `UPDATE clientes_servicios
         SET cant_horas=?
-        WHERE id_servicio=? AND id_usuario=?;`, [hourAmmount, idServ, idCli]
+        WHERE id_servicio=? AND id_usuario=? AND fecha_servicio like ?;`, [hourAmmount, idServ, idCli, date + '%']
       );
       const newServCli = await connection.query(
         `SELECT *
         FROM clientes_servicios
-        WHERE id_servicio=? AND id_usuario=?;`, [idServ, idCli]
+        WHERE id_servicio=? AND id_usuario=? AND fecha_servicio like ?;`, [idServ, idCli, date + '%']
       );
       if (newServCli.length != 0) {
         return newServCli[0];
