@@ -1,22 +1,41 @@
 import { validatePartialService, validateService } from "../schemas/services.js";
+import { Op } from "sequelize";
 
 
 export class ServicesController {
 
-  constructor({ servicesModel }) {
-    this.servicesModel = servicesModel;
+  constructor({ serviceModel }) {
+    this.serviceModel = serviceModel;
   }
 
   getAll = async (req, res) => {
-    const services = await this.servicesModel.getAll();
-    res.json(services);
+    try {
+      const services = await this.serviceModel.findAll();
+      res.json(services);
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
   getById = async (req, res) => {
-    const { id } = req.params;
+    const idServ = req.params.id;
+    try {
+      const service = await this.serviceModel.findAll({
+        where: {
+          id_servicio: {
+            [Op.eq]: idServ
+          }
+        }
+      });
+      console.log(service);
+      res.json(service);
 
-    const service = await this.servicesModel.getById({ id });
-    res.json(service);
+    }
+    catch (e) {
+      console.log(e);
+    }
+
   }
 
   create = async (req, res) => {
@@ -24,17 +43,35 @@ export class ServicesController {
     if (!result.success) {
       return res.status(404).json({ error: JSON.parse(result.error.message) });
     }
-    const newService = await this.servicesModel.create({ service: result.data });
-    res.status(201).json(newService);
+    try {
+      const newService = await this.serviceModel.create({ desc_servicio: result.data.description, precio_por_hora: result.data.hourValue });
+      console.log(newService.id_servicio);
+      res.status(201).json(newService);
+    }
+    catch (e) {
+      console.log(e);
+    }
+
+
   }
 
   delete = async (req, res) => {
-    const { id } = req.params;
-    const result = await this.servicesModel.delete({ id });
-    if (result == false) {
-      return res.status(404).json({ message: "No se encontró el producto" });
+    const idServ = req.params.id;
+    try {
+      const result = await this.serviceModel.destroy({
+        where: {
+          id_servicio: idServ
+        }
+      });
+      if (result == 0) {
+        return res.status(404).json({ message: "No se encontró el servicio" });
+      }
+      res.json({ message: "Servicio eliminado" });
     }
-    res.json({ message: "Servicio eliminado" });
+    catch (e) {
+      console.log(e);
+    }
+
   }
 
   update = async (req, res) => {
@@ -42,9 +79,25 @@ export class ServicesController {
     if (!result.success) {
       return res.status(404).json({ error: JSON.parse(result.error.message) });
     }
-    const { id } = req.params;
-    const newService = await this.servicesModel.update({ id, serv: result.data });
-    return res.json(newService);
+
+    const idServ = req.params.id;
+    try {
+      const updatedService = await this.serviceModel.update(
+        { desc_servicio: result.data.description, precio_por_hora: result.data.hourValue },
+        {
+          where: {
+            id_servicio: idServ
+          }
+        });
+      if (updatedService == 0) {
+        return res.status(404).json({ message: "No se encontró el servicio" });
+      }
+      res.json({ message: "Servicio actualizado" });
+    }
+    catch (e) {
+      console.log(e);
+    }
+
   }
 
 }

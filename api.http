@@ -16,24 +16,24 @@ POST http://localhost:1234/services
 Content-Type: application/json
 
 {
-  "description":"bdb",
-  "hourValue":123
+  "description":"erere",
+  "hourValue":7400
 }
 
 
 ### Actualizar un servicio
 
-PATCH http://localhost:1234/services/1
+PATCH http://localhost:1234/services/37
 Content-Type: application/json
 
 {
-  "hourValue":70000
+  "hourValue":54
 }
 
 
 ### Borrar un servicio
 
-DELETE http://localhost:1234/services/2
+DELETE http://localhost:1234/services/36
 
 //// Requests de Servicios-Clientes
 
