@@ -1,4 +1,4 @@
-import { validatePartialServiceClient, validateServiceClient } from "../schemas/services-clients.js";
+import { validateServiceClient, validatePartialServiceClient } from "../schemas/services-clients.js";
 
 
 export class ServicesClientsController {
@@ -8,48 +8,108 @@ export class ServicesClientsController {
   }
 
   getAll = async (req, res) => {
-    const servClis = await this.servicesClientsModel.getAll();
-    res.json(servClis);
+
+    try {
+      const servicesClients = await this.servicesClientsModel.findAll();
+      res.json(servicesClients);
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
   getById = async (req, res) => {
     const idServ = req.params.idServ;
     const idCli = req.params.idCli;
     const date = req.params.date;
-    const servCli = await this.servicesClientsModel.getById({ idServ, idCli, date });
-    res.json(servCli);
+
+    try {
+      const serviceClient = await this.servicesClientsModel.findAll({
+        where: {
+          id_servicio: idServ,
+          id_usuario: idCli,
+          fecha_servicio: date
+        }
+      });
+      res.json(serviceClient);
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
   create = async (req, res) => {
     const result = validateServiceClient(req.body);
+
     if (!result.success) {
       return res.status(404).json({ error: JSON.parse(result.error.message) });
     }
 
-    const newServCli = await this.servicesClientsModel.create({ servCli: result.data });
-    res.status(201).json(newServCli);
+    try {
+      const newServiceClient = await this.servicesClientsModel.create({
+        id_servicio: result.data.idServ,
+        id_usuario: result.data.idCli,
+        fecha_servicio: result.data.date,
+        cant_horas: result.data.hourAmmount
+      });
+      res.status(201).json(newServiceClient);
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
   delete = async (req, res) => {
     const idServ = req.params.idServ;
     const idCli = req.params.idCli;
     const date = req.params.date;
-    const result = await this.servicesClientsModel.delete({ idCli, idServ, date });
-    if (!result) {
-      return res.status(404).json({ message: "No se pudo eliminar el servicio del cliente" });
+
+    try {
+      const result = await this.servicesClientsModel.destroy({
+        where: {
+          id_servicio: idServ,
+          id_usuario: idCli,
+          fecha_servicio: date
+        }
+      });
+      if (result == 0) {
+        return res.status(404).json({ message: "Servicio del cliente no encontrado" });
+      }
+      res.json({ message: "Servicio del cliente eliminado" });
     }
-    res.json("Servicio del cliente eliminado");
+    catch (e) {
+      console.log(e);
+    }
   }
 
   update = async (req, res) => {
     const result = validatePartialServiceClient(req.body);
+
     if (!result.success) {
-      return res.status(404).json({ error: JSON.parse(result.error.message) });
+      return res.status(404).JSON({ error: JSON.parse(result.error.message) });
     }
+
     const idServ = req.params.idServ;
     const idCli = req.params.idCli;
     const date = req.params.date;
-    const updatedServCli = await this.servicesClientsModel.update({ idServ, idCli, newHourAmmount: result.data, date });
-    return res.json(updatedServCli);
+
+    try {
+      const updatedServCli = await this.servicesClientsModel.update({
+        cant_horas: result.data.hourAmmount
+      }, {
+        where: {
+          id_servicio: idServ,
+          id_usuario: idCli,
+          fecha_servicio: date
+        }
+      });
+      if (updatedServCli == 0) {
+        return res.status(404).json({ message: "No se encontró el servicio del cliente" });
+      }
+      res.json({ message: "Servicio actualizado" });
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 }

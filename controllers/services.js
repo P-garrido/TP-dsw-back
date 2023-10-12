@@ -1,5 +1,4 @@
 import { validatePartialService, validateService } from "../schemas/services.js";
-import { Op } from "sequelize";
 
 
 export class ServicesController {
@@ -23,12 +22,9 @@ export class ServicesController {
     try {
       const service = await this.serviceModel.findAll({
         where: {
-          id_servicio: {
-            [Op.eq]: idServ
-          }
+          id_servicio: idServ
         }
       });
-      console.log(service);
       res.json(service);
 
     }
