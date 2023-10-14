@@ -86,7 +86,7 @@ export class ServicesClientsController {
     const result = validatePartialServiceClient(req.body);
 
     if (!result.success) {
-      return res.status(404).JSON({ error: JSON.parse(result.error.message) });
+      return res.status(404).json({ error: JSON.parse(result.error.message) });
     }
 
     const idServ = req.params.idServ;
