@@ -39,6 +39,7 @@ export class UserController {
   }
 
   createUser = async (req, res) => {
+    console.log(req.body)
     const result = validateUser(req.body)
     
     if (!result.success){
