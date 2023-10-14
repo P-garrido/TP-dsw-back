@@ -45,6 +45,7 @@ export class UserController {
     if (!result.success){
       return res.status(400).json({error: JSON.parse(result.error.message)})
     }
+
     const newUser = await this.userModel.createUser({ input: result.data })
     res.status(201).json(newUser)
   }
@@ -59,3 +60,4 @@ export class UserController {
       return res.json(updatedUser)
     }
 }
+

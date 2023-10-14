@@ -2,10 +2,10 @@ import { Router } from "express";
 import { ServicesController } from "../controllers/services.js";
 
 
-export const createServiceRouter = ({ servicesModel }) => {
+export const createServiceRouter = ({ serviceModel }) => {
   const servicesRouter = Router();
 
-  const serviceController = new ServicesController({ servicesModel });
+  const serviceController = new ServicesController({ serviceModel });
 
   servicesRouter.get("/", serviceController.getAll);
   servicesRouter.get("/:id", serviceController.getById);
