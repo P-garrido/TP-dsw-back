@@ -25,6 +25,10 @@ export const serviceModel = sequelize.define("Servicio", {
   precio_por_hora: {
     type: DataTypes.FLOAT,
     allowNull: false
+  },
+  descripcion: {
+    type: DataTypes.STRING,
+    allowNull: true
   }
 }, {
   tableName: "servicios",

@@ -40,7 +40,7 @@ export class ServicesController {
       return res.status(404).json({ error: JSON.parse(result.error.message) });
     }
     try {
-      const newService = await this.serviceModel.create({ desc_servicio: result.data.description, precio_por_hora: result.data.hourValue });
+      const newService = await this.serviceModel.create({ desc_servicio: result.data.description, precio_por_hora: result.data.hourValue, descripcion: result.data.longDescription });
       console.log(newService.id_servicio);
       res.status(201).json(newService);
     }
@@ -79,7 +79,7 @@ export class ServicesController {
     const idServ = req.params.id;
     try {
       const updatedService = await this.serviceModel.update(
-        { desc_servicio: result.data.description, precio_por_hora: result.data.hourValue },
+        { desc_servicio: result.data.description, precio_por_hora: result.data.hourValue, descripcion: result.data.longDescription },
         {
           where: {
             id_servicio: idServ

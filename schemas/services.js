@@ -11,7 +11,10 @@ const serviceSchema = z.object({
       invalid_type_error: "El precio tiene que ser un número.",
       required_error: 'El precio es requerido.'
     }
-  ).positive()
+  ).positive(),
+  longDescription: z.string({
+    invalid_type_error: "La descripción tiene que ser una cadena de texto.",
+  }).optional().nullable()
 }
 );
 
