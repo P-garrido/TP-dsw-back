@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise';
+// import mysql from 'mysql2/promise';
 
 // const DEFAULT_CONFIG = {
 //   host: 'localhost',
@@ -7,77 +7,116 @@ import mysql from 'mysql2/promise';
 //   password: 'agus3278',
 //   database: 'tpdsw',
 // };
-const DEFAULT_CONFIG = {
+
+
+// const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;
+
+// const connection = await mysql.createConnection(connectionString);
+
+// export class ProductModel {
+//   static async getAllProducts() {
+//     const [products] = await connection.query('select * from productos');
+//     return products;
+//   }
+
+//   static async getProductById({ id }) {
+//     const [product] = await connection.query(
+//       'select * from productos where id_producto = ?',
+//       [id]
+//     );
+//     return product[0];
+//   }
+
+//   static async deleteProductById({ id }) {
+//     const [product] = await connection.query(
+//       'select * from productos where id_producto = ?',
+//       [id]
+//     );
+//     await connection.query('delete from productos where id_producto = ?', [id]);
+//     return product[0];
+//   }
+
+//   static async createProduct({ input }) {
+//     const {
+//       id_producto,
+//       nombre_producto,
+//       desc_producto,
+//       stock,
+//       precio,
+//       imagen,
+//     } = input;
+//     await connection.query(
+//       'insert into productos (nombre_producto, desc_producto, stock, precio, imagen) values (?,?,?,?,?)',
+//       [nombre_producto, desc_producto, stock, precio, imagen]
+//     );
+//     const [newProduct] = await connection.query('select * from productos', [
+//       id_producto,
+//     ]);
+//     return newProduct;
+//   }
+
+//   static async updateProduct({ input }) {
+//     const {
+//       id_producto,
+//       nombre_producto,
+//       desc_producto,
+//       stock,
+//       precio,
+//       imagen,
+//     } = input;
+//     await connection.query(
+//       'UPDATE productos SET nombre_producto=?, desc_producto=?, stock=?, precio=?, imagen=? WHERE id_producto=?',
+//       [nombre_producto, desc_producto, stock, precio, imagen, id_producto]
+//     );
+//     const [newProduct] = await connection.query(
+//       'SELECT * FROM productos WHERE id_producto = ?',
+//       [id_producto]
+//     );
+//     return newProduct;
+//   }
+// }
+
+import { Sequelize, Op, Model, DataTypes, NOW } from 'sequelize';
+
+const sequelize = new Sequelize('tpdsw', 'root', 'agus3278', {
   host: 'localhost',
-  user: 'root',
+  dialect: 'mysql',
   port: 3306,
-  password: '',
-  database: 'TPdsw'
-}
+});
 
-const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;
-
-const connection = await mysql.createConnection(connectionString);
-
-export class ProductModel {
-  static async getAllProducts() {
-    const [products] = await connection.query('select * from productos');
-    return products;
+export const ProductsModel = sequelize.define(
+  'productos',
+  {
+    id_producto: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    nombre_producto: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    desc_producto: {
+      type: DataTypes.STRING,
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    id_categoria: {
+      type: DataTypes.INTEGER,
+    },
+    precio: {
+      type: DataTypes.DECIMAL(9, 3),
+      allowNull: false,
+    },
+    imagen: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    timestamps: false,
   }
-
-  static async getProductById({ id }) {
-    const [product] = await connection.query(
-      'select * from productos where id_producto = ?',
-      [id]
-    );
-    return product[0];
-  }
-
-  static async deleteProductById({ id }) {
-    const [product] = await connection.query(
-      'select * from productos where id_producto = ?',
-      [id]
-    );
-    await connection.query('delete from productos where id_producto = ?', [id]);
-    return product[0];
-  }
-
-  static async createProduct({ input }) {
-    const {
-      id_producto,
-      nombre_producto,
-      desc_producto,
-      stock,
-      precio,
-      imagen,
-    } = input;
-    await connection.query(
-      'insert into productos (nombre_producto, desc_producto, stock, precio, imagen) values (?,?,?,?,?)',
-      [nombre_producto, desc_producto, stock, precio, imagen]
-    );
-    const [newProduct] = await connection.query('select * from productos', [
-      id_producto,
-    ]);
-    return newProduct;
-  }
-
-  static async updateProduct({ input }) {
-    const {
-      id_producto,
-      nombre_producto,
-      desc_producto,
-      stock,
-      precio,
-      imagen,
-    } = input;
-    await connection.query(
-      'UPDATE productos SET nombre_producto=?, desc_producto=?, stock=?, precio=?, imagen=? WHERE id_producto=?',
-      [nombre_producto, desc_producto, stock, precio, imagen, id_producto]
-    );
-    const [newProduct] = await connection.query(
-      'SELECT * FROM productos WHERE id_producto = ?',
-      [id_producto]
-    );
-    return newProduct;
-  }
-}
+);
