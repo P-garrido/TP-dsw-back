@@ -14,7 +14,8 @@ const serviceClientSchema = z.object({
     invalid_type_error: "La fecha del servicio tiene que ser una fecha y hora.",
     required_error: 'La fecha del servicio es requerida.'
   }),
-  hourAmmount: z.number().positive().optional().nullable()
+  hourAmmount: z.number().positive().optional().nullable(),
+  clientMsg: z.string().optional().nullable()
 });
 
 

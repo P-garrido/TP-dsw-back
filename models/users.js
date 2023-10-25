@@ -1,15 +1,16 @@
 import mysql from 'mysql2/promise';
 import {Sequelize, DataTypes} from 'sequelize'
 
+
 //base de datos agus
 // const DEFAULT_CONFIG = {
 //   host: 'localhost',
 //   user: 'root',
 //   port: 3306,
-
 //   password: 'agus3278',
 //   database: 'TPdsw',
 // };
+
 //base de datos pedro
 // const DEFAULT_CONFIG = {
 //   host: 'localhost',
@@ -18,6 +19,7 @@ import {Sequelize, DataTypes} from 'sequelize'
 //   password: '',
 //   database: 'TPdsw'
 // }
+
 // base de datos fran
 const DEFAULT_CONFIG = {
   host: 'localhost',
@@ -26,6 +28,25 @@ const DEFAULT_CONFIG = {
   password: 'francisco',
   database: 'TPdsw'
 }
+ 
+const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;
+
+const connection = await mysql.createConnection(connectionString);
+
+export class UserModel {
+  static async getAllUsers() {
+    const [users] = await connection.query('select * from usuarios');
+    return users;
+  }
+
+  static async getUserById({ id }) {
+    const [users] = await connection.query(
+      'select * from usuarios where id_usuario = ?',
+      [id]
+    );
+    return users[0];
+  }
+
 
 const sequelize = new Sequelize('TPdsw', 'root', '', {
   host: 'localhost',

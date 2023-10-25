@@ -50,7 +50,8 @@ export class ServicesClientsController {
         id_servicio: result.data.idServ,
         id_usuario: result.data.idCli,
         fecha_servicio: result.data.date,
-        cant_horas: result.data.hourAmmount
+        cant_horas: result.data.hourAmmount,
+        mensaje_cliente: result.data.clientMsg
       });
       res.status(201).json(newServiceClient);
     }
@@ -86,7 +87,7 @@ export class ServicesClientsController {
     const result = validatePartialServiceClient(req.body);
 
     if (!result.success) {
-      return res.status(404).JSON({ error: JSON.parse(result.error.message) });
+      return res.status(404).json({ error: JSON.parse(result.error.message) });
     }
 
     const idServ = req.params.idServ;
@@ -95,7 +96,7 @@ export class ServicesClientsController {
 
     try {
       const updatedServCli = await this.servicesClientsModel.update({
-        cant_horas: result.data.hourAmmount
+        cant_horas: result.data.hourAmmount,
       }, {
         where: {
           id_servicio: idServ,
