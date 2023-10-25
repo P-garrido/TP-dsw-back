@@ -46,6 +46,7 @@ export class UserModel {
     );
     return users[0];
   }
+}
 
 
 const sequelize = new Sequelize('TPdsw', 'root', '', {
@@ -101,4 +102,3 @@ export const userModel = sequelize.define("Usuario",{
   tableName: "usuarios",
   timestamps: false
 })
-
