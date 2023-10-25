@@ -3,6 +3,8 @@ import { DataTypes, Sequelize } from 'sequelize';
 const sequelize = new Sequelize('TPdsw', 'root', 'agus3278', {
   host: 'localhost',
   dialect: 'mysql',
+  //contraseña bd fran,
+  password: 'francisco'
 });
 
 try {
