@@ -4,9 +4,12 @@ export class OrderProductsController {
   }
 
   createOrderProduct = async (req, res) => {
-    const result = req.body;
-    const newOrderProductTuple =
-      await this.orderProductsModel.createOrderProductTuple({ input: result });
+    const { id_pedido, id_producto, cantidad } = req.body;
+    const newOrderProductTuple = await this.orderProductsModel.create({
+      id_pedido,
+      id_producto,
+      cantidad,
+    });
     if (newOrderProductTuple) {
       res.status(201).json(newOrderProductTuple);
     } else {

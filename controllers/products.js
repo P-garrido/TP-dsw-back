@@ -28,11 +28,11 @@ export class ProductController {
     // } else {
     //   res.status(404).send({ message: 'Product not found' });
     // }
-    const id = req.params;
+    const id = req.params.id;
     const product = await this.productModel.findOne({
       where: { id_producto: id },
     });
-    if (product) {
+    if (product != null) {
       res.json(product);
     } else {
       res.status(404).send({ message: 'Product not found' });
@@ -116,6 +116,26 @@ export class ProductController {
       res.status(201).json(newProduct);
     } else {
       res.status(400).json({ message: 'No se pudo actualizar el producto' });
+    }
+  };
+
+  updateProductStock = async (req, res) => {
+    const id_producto = req.params.id;
+    const { cantidad } = req.body;
+    const stockProd = await this.productModel.findOne({
+      where: { id_producto: id_producto },
+    });
+    const updatedProduct = await this.productModel.update(
+      { stock: stockProd.stock - cantidad },
+      { where: { id_producto: id_producto } }
+    );
+    const newProduct = await this.productModel.findOne({
+      where: { id_producto: id_producto },
+    });
+    if (newProduct) {
+      res.status(201).json(newProduct);
+    } else {
+      res.status(400).json({ message: 'No se pudo actualizar el stock' });
     }
   };
 }

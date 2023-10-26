@@ -8,6 +8,7 @@ export const createProductRouter = ({ productModel }) => {
 
   productRouter.get('/', productController.getAllProducts);
   productRouter.get('/:id', productController.getProductById);
+  productRouter.patch('/:id', productController.updateProductStock);
   productRouter.delete('/:id', productController.deleteProductById);
   productRouter.post('/', productController.createProduct);
   productRouter.patch('/', productController.updateProduct);
