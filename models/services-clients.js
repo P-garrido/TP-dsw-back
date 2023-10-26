@@ -2,7 +2,7 @@ import { DataTypes, Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize('TPdsw', 'root', 'francisco', {
   host: 'localhost',
-  dialect: 'mysql',
+  dialect: 'mysql'
 });
 
 try {
@@ -12,28 +12,30 @@ try {
   console.error('Unable to connect to the database:', error);
 }
 
-export const serviceModel = sequelize.define(
-  'Servicio',
+export const servicesClientsModel = sequelize.define(
+  'services-clients',
   {
     id_servicio: {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    desc_servicio: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    id_usuario: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
     },
-    precio_por_hora: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
+    fecha_servicio: {
+      type: DataTypes.DATE,
+      primaryKey: true,
     },
-    descripcion: {
+    cant_horas: {
+      type: DataTypes.INTEGER,
+    },
+    mensaje_cliente: {
       type: DataTypes.STRING,
-      allowNull: true,
     },
   },
   {
-    tableName: 'servicios',
+    tableName: 'clientes_servicios',
     timestamps: false,
   }
 );

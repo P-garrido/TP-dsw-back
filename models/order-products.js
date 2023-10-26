@@ -1,5 +1,6 @@
 //MODELO SIN SEQUELIZE
 
+
 // import mysql from 'mysql2/promise';
 
 // const DEFAULT_CONFIG = {
@@ -9,6 +10,7 @@
 //   password: 'agus3278',
 //   database: 'tpdsw',
 // };
+
 
 // const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;
 
@@ -62,6 +64,7 @@ export const OrderProduct = sequelize.define(
     timestamps: false,
   }
 );
+
 OrdersModel.hasMany(OrderProduct, {
   foreignKey: 'id_pedido',
 });

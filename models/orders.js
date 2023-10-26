@@ -1,7 +1,13 @@
 import { Sequelize, Op, Model, DataTypes, NOW, QueryTypes } from 'sequelize';
 // import { OrderProduct } from './order-products.js';
 
-const sequelize = new Sequelize('tpdsw', 'root', 'agus3278', {
+// const sequelize = new Sequelize('tpdsw', 'root', 'agus3278', {
+//   host: 'localhost',
+//   dialect: 'mysql',
+//   port: 3306,
+// });
+
+const sequelize = new Sequelize('tpdsw', 'root', 'francisco', {
   host: 'localhost',
   dialect: 'mysql',
   port: 3306,

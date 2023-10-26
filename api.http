@@ -7,7 +7,7 @@ GET http://localhost:1234/services
 
 ### Buscar un servicio por id
 
-GET http://localhost:1234/services/1
+GET http://localhost:1234/services/3
 
 
 ### Crear un servicio
@@ -16,24 +16,67 @@ POST http://localhost:1234/services
 Content-Type: application/json
 
 {
-  "description":"Fumigación",
-  "hourValue":60500
+  "description":"erere",
+  "hourValue":7400
 }
 
 
 ### Actualizar un servicio
 
-PATCH http://localhost:1234/services/1
+PATCH http://localhost:1234/services/37
 Content-Type: application/json
 
 {
-  "hourValue":70000
+  "hourValue":53
 }
 
 
 ### Borrar un servicio
 
-DELETE http://localhost:1234/services/2
+DELETE http://localhost:1234/services/37
+
+//// Requests de Servicios-Clientes
+
+
+### Buscar todos los servicios de los clientes
+
+GET http://localhost:1234/services-clients
+
+
+### Buscar un servicio de un cliente por id
+
+GET http://localhost:1234/services-clients/3/1/2023-10-11T21:15:20.000Z
+
+
+
+### Crear un nuevo servicio de un cliente
+
+POST http://localhost:1234/services-clients
+Content-Type: application/json
+
+{
+  "idServ": 6,
+  "idCli":2,
+  "date":"2024-10-08T15:32:00.000Z",
+  "hourAmmount":3
+}
+
+
+### Borrar un servicio de un cliente por id
+
+DELETE http://localhost:1234/services-clients/6/2/2024-10-08T15:32:00.000Z
+
+
+
+### Actualizar un servicio
+
+PATCH http://localhost:1234/services-clients/6/2/2024-10-08T15:32:00.000Z
+Content-Type: application/json
+
+{
+  "hourAmmount":5
+}
+
 
 
 
@@ -43,10 +86,10 @@ DELETE http://localhost:1234/services/2
 GET http://localhost:1234/users
 
 ### obtener un usuario por id
-GET http://localhost:1234/users/1
+GET http://localhost:1234/users/20
 
 ### borrar un usuario
-DELETE http://localhost:1234/users/1
+DELETE http://localhost:1234/users/20
 
 ### agregar un usuario
 POST http://localhost:1234/users
@@ -64,7 +107,7 @@ Content-Type: application/json
   }
 
 ### actualizar un usuario
-PATCH http://localhost:1234/users/1
+PATCH http://localhost:1234/users/20
 Content-Type: application/json
 
 {
