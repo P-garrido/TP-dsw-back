@@ -1,3 +1,5 @@
+import { OrderProduct } from '../models/order-products.js';
+
 export class OrdersController {
   constructor({ orderModel }) {
     this.orderModel = orderModel;
@@ -16,7 +18,13 @@ export class OrdersController {
     }
   };
   getAll = async (req, res) => {
-    const orders = await this.orderModel.findAll();
+    const orders = await this.orderModel.findAll({
+      include: {
+        model: OrderProduct,
+        attributes: ['id_producto', 'cantidad'],
+      },
+    });
+
     if (orders.length > 0) {
       res.json(orders);
     } else {
