@@ -13,7 +13,7 @@ const DEFAULT_CONFIG = {
   user: 'root',
   port: 3306,
   // contraseña bd fran
-  password: 'francisco',
+  password: '',
   database: 'TPdsw'
 }
 

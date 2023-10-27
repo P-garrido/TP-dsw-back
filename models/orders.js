@@ -6,7 +6,7 @@ import { Sequelize, Op, Model, DataTypes, NOW } from 'sequelize';
 //   port: 3306,
 // });
 
-const sequelize = new Sequelize('tpdsw', 'root', 'francisco', {
+const sequelize = new Sequelize('tpdsw', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
   port: 3306,

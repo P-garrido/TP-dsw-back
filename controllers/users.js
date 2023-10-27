@@ -1,4 +1,5 @@
-import {validateUser, validatePartialUser} from '../schemas/users.js';
+import { validateUser, validatePartialUser } from '../schemas/users.js';
+import { generateToken } from '../middlewares/token.js';
 
 export class UserController {
   constructor({ userModel }) {
@@ -49,47 +50,72 @@ export class UserController {
   createUser = async (req, res) => {
     console.log(req.body)
     const result = validateUser(req.body)
-    
-    if (!result.success){
-      return res.status(400).json({error: JSON.parse(result.error.message)})
+
+    if (!result.success) {
+      return res.status(400).json({ error: JSON.parse(result.error.message) })
     }
 
     const newUser = await this.userModel.create({
-      nombre_usuario: result.data.nombre_usuario, 
-      clave: result.data.clave, 
+      nombre_usuario: result.data.nombre_usuario,
+      clave: result.data.clave,
       email: result.data.email,
-      telefono: result.data.telefono, 
+      telefono: result.data.telefono,
       nombre: result.data.nombre,
-      apellido: result.data.apellido, 
+      apellido: result.data.apellido,
       direccion: result.data.direccion,
       tipo_usuario: result.data.tipo_usuario
     })
     res.status(201).json(newUser)
   }
 
-    modifyUser = async (req, res) => {
-      const result = validatePartialUser(req.body)
-      if (!result.success){
-        return res.status(400).json({error: JSON.parse(result.error.message)})
-      }
-      const {id} = req.params
-      const updatedUser = await this.userModel.update(
-        {
-          nombre_usuario: result.data.nombre_usuario, 
-          clave: result.data.clave, 
-          email: result.data.email,
-          telefono: result.data.telefono, 
-          nombre: result.data.nombre,
-          apellido: result.data.apellido, 
-          direccion: result.data.direccion,
-          tipo_usuario: result.data.tipo_usuario
+  modifyUser = async (req, res) => {
+    const result = validatePartialUser(req.body)
+    if (!result.success) {
+      return res.status(400).json({ error: JSON.parse(result.error.message) })
+    }
+    const { id } = req.params
+    const updatedUser = await this.userModel.update(
+      {
+        nombre_usuario: result.data.nombre_usuario,
+        clave: result.data.clave,
+        email: result.data.email,
+        telefono: result.data.telefono,
+        nombre: result.data.nombre,
+        apellido: result.data.apellido,
+        direccion: result.data.direccion,
+        tipo_usuario: result.data.tipo_usuario
       },
       {
         where: {
           id_usuario: id
         }
       })
-      return res.json(updatedUser)
+    return res.json(updatedUser)
+  }
+
+  loginUser = async (req, res) => {
+    const { nombre_usuario, clave } = req.body;
+    console.log(nombre_usuario);
+    console.log(clave);
+
+    const user = await this.userModel.findOne({
+      where: {
+        nombre_usuario: nombre_usuario,
+        clave: clave
+      }
+    });
+    if (user) {
+      const payload = {
+        userName: nombre_usuario,
+        password: clave
+      }
+      const token = generateToken(payload);
+      res.json({ token });
     }
+    else {
+      res.status(404).send({ message: 'user not found' });
+    }
+
+  }
 }
 

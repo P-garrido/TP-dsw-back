@@ -1,5 +1,5 @@
 import mysql from 'mysql2/promise';
-import {Sequelize, DataTypes} from 'sequelize'
+import { Sequelize, DataTypes } from 'sequelize'
 
 
 //base de datos agus
@@ -12,47 +12,29 @@ import {Sequelize, DataTypes} from 'sequelize'
 // };
 
 //base de datos pedro
-// const DEFAULT_CONFIG = {
-//   host: 'localhost',
-//   user: 'root',
-//   port: 3306,
-//   password: '',
-//   database: 'TPdsw'
-// }
-
-// base de datos fran
 const DEFAULT_CONFIG = {
   host: 'localhost',
   user: 'root',
   port: 3306,
-  password: 'francisco',
+  password: '',
   database: 'TPdsw'
 }
- 
-const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;
 
-const connection = await mysql.createConnection(connectionString);
+// base de datos fran
+// const DEFAULT_CONFIG = {
+//   host: 'localhost',
+//   user: 'root',
+//   port: 3306,
+//   password: 'francisco',
+//   database: 'TPdsw'
+// }
 
-export class UserModel {
-  static async getAllUsers() {
-    const [users] = await connection.query('select * from usuarios');
-    return users;
-  }
 
-  static async getUserById({ id }) {
-    const [users] = await connection.query(
-      'select * from usuarios where id_usuario = ?',
-      [id]
-    );
-    return users[0];
-  }
-}
 
 
 const sequelize = new Sequelize('TPdsw', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
-  password: 'francisco'
 })
 
 try {
@@ -62,7 +44,7 @@ try {
   console.error('Unable to connect to the database:', error);
 }
 
-export const userModel = sequelize.define("Usuario",{
+export const userModel = sequelize.define("Usuario", {
   id_usuario: {
     type: DataTypes.INTEGER,
     primaryKey: true
@@ -98,7 +80,8 @@ export const userModel = sequelize.define("Usuario",{
   tipo_usuario: {
     type: DataTypes.INTEGER,
     allowNull: false
-  }}, {
+  }
+}, {
   tableName: "usuarios",
   timestamps: false
 })
