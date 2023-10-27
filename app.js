@@ -6,6 +6,10 @@ import { createProductRouter } from './routes/products.js';
 import { createOrderRouter } from './routes/orders.js';
 import { createOrderProductsRouter } from './routes/order-products.js';
 import { createServicesClientsRouter } from './routes/services-clients.js';
+import { createLoginRouter } from './routes/login.js';
+import { validateToken } from './middlewares/token.js';
+
+
 
 export const createApp = ({
   serviceModel,
@@ -20,11 +24,11 @@ export const createApp = ({
   app.disable('x-powered-by');
   app.use(corsMiddleware());
 
-  app.use('/services', createServiceRouter({ serviceModel }));
-  app.use(
-    '/services-clients',
-    createServicesClientsRouter({ servicesClientsModel })
-  );
+
+  app.use('/login', createLoginRouter({ userModel }));
+
+  app.use('/services', validateToken, createServiceRouter({ serviceModel }));
+  app.use('/services-clients', createServicesClientsRouter({ servicesClientsModel }));
   app.use('/users', createUserRouter({ userModel }));
   app.use('/products', createProductRouter({ productModel }));
   app.use('/orders', createOrderRouter({ orderModel }));

@@ -3,6 +3,7 @@
 ### Buscar todos los servicios
 
 GET http://localhost:1234/services
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODQzMTI3MiwiZXhwIjoxNjk4NDMxMjkyfQ.a9jiiQxs25QGvHXKikMrn8bYlGq3QFj-wjX0XWujbjs
 
 
 ### Buscar un servicio por id
@@ -114,3 +115,15 @@ Content-Type: application/json
     "direccion": "aaaaaaaaaaaaaaaaaaaaaaaaaaa"
   }
 
+
+
+//// Requests de Login
+
+###Post login
+POST http://localhost:1234/login
+Content-Type: application/json
+
+{
+  "nombre_usuario": "juan23",
+  "clave": "1234"
+}

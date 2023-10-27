@@ -35,3 +35,4 @@ export const OrderProduct = sequelize.define(
 OrdersModel.hasMany(OrderProduct, {
   foreignKey: 'id_pedido',
 });
+
