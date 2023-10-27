@@ -7,7 +7,7 @@ const PASSWORD = process.env.PASSWORD;
 const sequelize = new Sequelize('tpdsw', 'root', PASSWORD, {
   host: 'localhost',
   dialect: 'mysql',
-  port: 3306,
+  port: 3306
 });
 
 export const OrdersModel = sequelize.define(
