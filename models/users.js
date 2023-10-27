@@ -1,6 +1,5 @@
 import mysql from 'mysql2/promise';
-import {Sequelize, DataTypes} from 'sequelize'
-
+import { Sequelize, DataTypes } from 'sequelize';
 
 //base de datos agus
 // const DEFAULT_CONFIG = {
@@ -21,39 +20,39 @@ import {Sequelize, DataTypes} from 'sequelize'
 // }
 
 // base de datos fran
-const DEFAULT_CONFIG = {
-  host: 'localhost',
-  user: 'root',
-  port: 3306,
-  password: 'francisco',
-  database: 'TPdsw'
-}
- 
-const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;
 
-const connection = await mysql.createConnection(connectionString);
+// const DEFAULT_CONFIG = {
+//   host: 'localhost',
+//   user: 'root',
+//   port: 3306,
+//   password: 'francisco',
+//   database: 'TPdsw',
+// };
 
-export class UserModel {
-  static async getAllUsers() {
-    const [users] = await connection.query('select * from usuarios');
-    return users;
-  }
+// const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;
 
-  static async getUserById({ id }) {
-    const [users] = await connection.query(
-      'select * from usuarios where id_usuario = ?',
-      [id]
-    );
-    return users[0];
-  }
-}
+// const connection = await mysql.createConnection(connectionString);
 
+// export class UserModel {
+//   static async getAllUsers() {
+//     const [users] = await connection.query('select * from usuarios');
+//     return users;
+//   }
 
-const sequelize = new Sequelize('TPdsw', 'root', '', {
+//   static async getUserById({ id }) {
+//     const [users] = await connection.query(
+//       'select * from usuarios where id_usuario = ?',
+//       [id]
+//     );
+//     return users[0];
+//   }
+// }
+
+const sequelize = new Sequelize('TPdsw', 'root', 'agus3278', {
   host: 'localhost',
   dialect: 'mysql',
-  password: 'francisco'
-})
+  password: 'francisco',
+});
 
 try {
   await sequelize.authenticate();
@@ -62,43 +61,48 @@ try {
   console.error('Unable to connect to the database:', error);
 }
 
-export const userModel = sequelize.define("Usuario",{
-  id_usuario: {
-    type: DataTypes.INTEGER,
-    primaryKey: true
+export const userModel = sequelize.define(
+  'Usuario',
+  {
+    id_usuario: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    nombre_usuario: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    clave: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    telefono: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    apellido: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    direccion: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    tipo_usuario: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
-  nombre_usuario: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  clave: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  telefono: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  nombre: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  apellido: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  direccion: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  tipo_usuario: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  }}, {
-  tableName: "usuarios",
-  timestamps: false
-})
+  {
+    tableName: 'usuarios',
+    timestamps: false,
+  }
+);

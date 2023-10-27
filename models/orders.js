@@ -1,13 +1,10 @@
 import { Sequelize, Op, Model, DataTypes, NOW, QueryTypes } from 'sequelize';
+import 'dotenv/config';
 // import { OrderProduct } from './order-products.js';
 
-// const sequelize = new Sequelize('tpdsw', 'root', 'agus3278', {
-//   host: 'localhost',
-//   dialect: 'mysql',
-//   port: 3306,
-// });
+const PASSWORD = process.env.PASSWORD;
 
-const sequelize = new Sequelize('tpdsw', 'root', 'francisco', {
+const sequelize = new Sequelize('tpdsw', 'root', PASSWORD, {
   host: 'localhost',
   dialect: 'mysql',
   port: 3306,
