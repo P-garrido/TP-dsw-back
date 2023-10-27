@@ -8,7 +8,7 @@ import { createOrderProductsRouter } from './routes/order-products.js';
 import { createServicesClientsRouter } from './routes/services-clients.js';
 
 export const createApp = ({
-  servicesModel,
+  serviceModel,
   userModel,
   productModel,
   orderModel,
@@ -20,7 +20,7 @@ export const createApp = ({
   app.disable('x-powered-by');
   app.use(corsMiddleware());
 
-  app.use('/services', createServiceRouter({ servicesModel }));
+  app.use('/services', createServiceRouter({ serviceModel }));
   app.use(
     '/services-clients',
     createServicesClientsRouter({ servicesClientsModel })
