@@ -97,7 +97,7 @@ POST http://localhost:1234/users
 Content-Type: application/json
 
 {
-    "nombre_usuario": "francisco00",
+    "nombre_usuario": "francisco01",
     "clave": "12345",
     "email": "francisco@gmail",
     "telefono": "123456",
