@@ -1,38 +1,13 @@
-import mysql from 'mysql2/promise';
 import { Sequelize, DataTypes } from 'sequelize'
+import 'dotenv/config'
 
-
-//base de datos agus
-// const DEFAULT_CONFIG = {
-//   host: 'localhost',
-//   user: 'root',
-//   port: 3306,
-//   password: 'agus3278',
-//   database: 'TPdsw',
-// };
-
-//base de datos pedro
-const DEFAULT_CONFIG = {
-  host: 'localhost',
-  user: 'root',
-  port: 3306,
-  password: '',
-  database: 'TPdsw'
-}
-
-// base de datos fran
-// const DEFAULT_CONFIG = {
-//   host: 'localhost',
-//   user: 'root',
-//   port: 3306,
-//   password: 'francisco',
-//   database: 'TPdsw'
-// }
+const PASSWORD = process.env.PASSWORD
 
 
 
 
-const sequelize = new Sequelize('TPdsw', 'root', '', {
+
+const sequelize = new Sequelize('TPdsw', 'root', PASSWORD, {
   host: 'localhost',
   dialect: 'mysql',
 })

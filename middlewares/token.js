@@ -8,7 +8,7 @@ const jwt = pkg;
 const secret = process.env.SECRET;
 
 export const generateToken = (user) => {
-  return jwt.sign(user, secret, { expiresIn: '20s' })
+  return jwt.sign(user, secret, { expiresIn: '10m' })
 }
 
 

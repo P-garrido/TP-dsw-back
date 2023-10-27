@@ -3,7 +3,7 @@
 ### Buscar todos los servicios
 
 GET http://localhost:1234/services
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODM2NDgwMywiZXhwIjoxNjk4MzY0ODIzfQ.aUg76SpQsXWIxmgVaGWfqxtGiCjbXl2N1aOUNqhVdmk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODQzMTI3MiwiZXhwIjoxNjk4NDMxMjkyfQ.a9jiiQxs25QGvHXKikMrn8bYlGq3QFj-wjX0XWujbjs
 
 
 ### Buscar un servicio por id

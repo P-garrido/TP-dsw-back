@@ -94,20 +94,20 @@ export class UserController {
   }
 
   loginUser = async (req, res) => {
-    const { nombre_usuario, clave } = req.body;
-    console.log(nombre_usuario);
-    console.log(clave);
+    const userName = req.body.nombre_usuario;
+    const pass = req.body.clave;
+
 
     const user = await this.userModel.findOne({
       where: {
-        nombre_usuario: nombre_usuario,
-        clave: clave
+        nombre_usuario: userName,
+        clave: pass
       }
     });
     if (user) {
       const payload = {
-        userName: nombre_usuario,
-        password: clave
+        userName: userName,
+        password: pass
       }
       const token = generateToken(payload);
       res.json({ token });
