@@ -110,7 +110,7 @@ export class UserController {
         password: pass
       }
       const token = generateToken(payload);
-      res.json({ token });
+      res.json({ token, user });
     }
     else {
       res.status(404).send({ message: 'user not found' });
