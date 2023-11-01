@@ -7,7 +7,7 @@ GET http://localhost:1234/services
 
 ### Buscar un servicio por id
 
-GET http://localhost:1234/services/45
+GET http://localhost:1234/services/6
 
 
 ### Crear un servicio
@@ -23,10 +23,12 @@ Content-Type: application/json
 
 ### Actualizar un servicio
 
-PATCH http://localhost:1234/services/6
+PUT http://localhost:1234/services/6
 Content-Type: application/json
 
 {
+  "desc_servicio":"Prueba",
+  "precio_por_hora":54,
   "descripcion":"prueba"
 }
 
