@@ -12,7 +12,7 @@ export const createServiceRouter = ({ serviceModel }) => {
   servicesRouter.get("/", serviceController.getAll);
   servicesRouter.get("/:id", serviceController.getById);
   servicesRouter.post("/", serviceController.create);
-  servicesRouter.put("/:id", serviceController.update);
+  servicesRouter.patch("/:id", serviceController.update);
   servicesRouter.delete("/:id", serviceController.delete);
 
   return servicesRouter;

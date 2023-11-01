@@ -23,7 +23,7 @@ Content-Type: application/json
 
 ### Actualizar un servicio
 
-PUT http://localhost:1234/services/6
+PATCH http://localhost:1234/services/6
 Content-Type: application/json
 
 {
