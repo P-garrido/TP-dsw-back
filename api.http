@@ -27,9 +27,7 @@ PATCH http://localhost:1234/services/6
 Content-Type: application/json
 
 {
-  "desc_servicio":"Prueba",
-  "precio_por_hora":54,
-  "descripcion":"prueba"
+  "longDescription":"prueba"
 }
 
 
