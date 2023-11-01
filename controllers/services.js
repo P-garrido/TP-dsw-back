@@ -85,7 +85,7 @@ export class ServicesController {
             id_servicio: idServ
           }
         });
-      if (updatedService == 0) {
+      if (!updatedService) {
         return res.status(404).json({ message: "No se encontró el servicio" });
       }
       res.json({ message: "Servicio actualizado" });

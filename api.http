@@ -3,7 +3,7 @@
 ### Buscar todos los servicios
 
 GET http://localhost:1234/services
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODQzMTY5NCwiZXhwIjoxNjk4NDMyMjk0fQ.DukxkiUJs2aSMmRuKBcd3eDY-ikiVjgmpzA1bHdS3nM
+
 
 ### Buscar un servicio por id
 
