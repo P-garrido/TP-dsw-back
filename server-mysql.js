@@ -7,6 +7,7 @@ import { ProductsModel } from './models/products.js';
 import { OrderProduct } from './models/order-products.js';
 // import { ProductModel } from './models/products.js';
 import { servicesClientsModel } from './models/services-clients.js';
+import { branchModel } from "./models/branches.js";
 
 
 createApp({
@@ -16,4 +17,5 @@ createApp({
   orderModel: OrdersModel,
   orderProductsModel: OrderProduct,
   servicesClientsModel,
+  branchModel
 });

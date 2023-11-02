@@ -7,6 +7,7 @@ import { createOrderRouter } from './routes/orders.js';
 import { createOrderProductsRouter } from './routes/order-products.js';
 import { createServicesClientsRouter } from './routes/services-clients.js';
 import { createLoginRouter } from './routes/login.js';
+import { BranchesRouter } from "./routes/branches.js";
 
 
 
@@ -17,6 +18,7 @@ export const createApp = ({
   orderModel,
   orderProductsModel,
   servicesClientsModel,
+  branchModel
 }) => {
   const app = express();
   app.use(json());
@@ -32,6 +34,7 @@ export const createApp = ({
   app.use('/products', createProductRouter({ productModel }));
   app.use('/orders', createOrderRouter({ orderModel }));
   app.use('/order/products', createOrderProductsRouter({ orderProductsModel }));
+   app.use('/branches', BranchesRouter({ branchModel }));
 
   const PORT = process.env.PORT ?? 1234;
 
