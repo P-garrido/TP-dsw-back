@@ -1,3 +1,4 @@
+import { userModel } from "../models/users.js";
 import { validatePartialService, validateService } from "../schemas/services.js";
 
 

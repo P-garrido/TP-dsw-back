@@ -1,3 +1,5 @@
+import { userModel } from "../models/users.js";
+import { serviceModel } from "../models/services.js";
 import { validateServiceClient, validatePartialServiceClient } from "../schemas/services-clients.js";
 
 
@@ -10,7 +12,7 @@ export class ServicesClientsController {
   getAll = async (req, res) => {
 
     try {
-      const servicesClients = await this.servicesClientsModel.findAll();
+      const servicesClients = await this.servicesClientsModel.findAll({ include: [{ model: userModel }, { model: serviceModel }] });
       res.json(servicesClients);
     }
     catch (e) {

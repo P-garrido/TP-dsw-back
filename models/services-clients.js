@@ -2,6 +2,7 @@ import { DataTypes, Sequelize } from 'sequelize';
 import 'dotenv/config'
 
 
+
 const password = process.env.PASSWORD;
 
 const sequelize = new Sequelize('TPdsw', 'root', password, {
@@ -43,3 +44,4 @@ export const servicesClientsModel = sequelize.define(
     timestamps: false,
   }
 );
+
