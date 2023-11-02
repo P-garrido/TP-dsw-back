@@ -126,3 +126,33 @@ Content-Type: application/json
   "nombre_usuario": "juan23",
   "clave": "1234"
 }
+
+//// Requests de sucursales
+
+### obtener todas las sucursales
+GET http://localhost:1234/branches
+
+
+### crear una sucursal
+POST http://localhost:1234/branches
+Content-Type: application/json
+
+{
+  "nombre": "Sucursal 3",
+  "direccion": "Av. Siempre Viva 124"
+}
+
+### actualizar una sucursal [nombre]
+PATCH http://localhost:1234/branches/25
+Content-Type: application/json
+
+{
+  "nombre": "Sucursal 3 (actualizada)"
+}
+
+
+### obtener una sucursal por id
+GET http://localhost:1234/branches/1/
+
+### borrar una sucursal
+DELETE http://localhost:1234/branches/18
