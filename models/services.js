@@ -1,5 +1,7 @@
 import { DataTypes, Sequelize } from 'sequelize';
 import 'dotenv/config'
+import { servicesClientsModel } from './services-clients.js';
+
 
 
 const password = process.env.PASSWORD;
@@ -41,3 +43,6 @@ export const serviceModel = sequelize.define(
     timestamps: false,
   }
 );
+
+serviceModel.hasMany(servicesClientsModel, { foreignKey: "id_servicio" });
+servicesClientsModel.belongsTo(serviceModel, { foreignKey: "id_servicio" });
