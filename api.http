@@ -23,11 +23,13 @@ Content-Type: application/json
 
 ### Actualizar un servicio
 
-PATCH http://localhost:1234/services/37
+PATCH http://localhost:1234/services/3
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODk2MjQ5NSwiZXhwIjoxNjk4OTYzMDk1fQ.2CS6jyPIakOmWjlbnsUYEl_58ynnRzcR8OGLvl3Lwg4
 
 {
-  "hourValue":53
+  "hourValue":53,
+  "longDescription":"Limpiamos tu pileta dos veces por semana"
 }
 
 
@@ -41,6 +43,7 @@ DELETE http://localhost:1234/services/37
 ### Buscar todos los servicios de los clientes
 
 GET http://localhost:1234/services-clients
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODk2MTMzMCwiZXhwIjoxNjk4OTYxOTMwfQ.TpAGVx9WmzvO67b5fPlyTlO5A5WAV2UYwpzG2taEJJ0
 
 
 ### Buscar un servicio de un cliente por id
@@ -70,8 +73,10 @@ DELETE http://localhost:1234/services-clients/6/2/2024-10-08T15:32:00.000Z
 
 ### Actualizar un servicio
 
-PATCH http://localhost:1234/services-clients/6/2/2024-10-08T15:32:00.000Z
+PATCH http://localhost:1234/services-clients/3/1/2023-10-19T08:00:00.000Z
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODk2MTMzMCwiZXhwIjoxNjk4OTYxOTMwfQ.TpAGVx9WmzvO67b5fPlyTlO5A5WAV2UYwpzG2taEJJ0
+
 
 {
   "hourAmmount":5

@@ -44,5 +44,6 @@ export const serviceModel = sequelize.define(
   }
 );
 
-serviceModel.hasMany(servicesClientsModel, { foreignKey: "id_servicio" });
-servicesClientsModel.belongsTo(serviceModel, { foreignKey: "id_servicio" });
+serviceModel.hasMany(servicesClientsModel, { foreignKey: "id_servicio", onDelete: "CASCADE" });
+servicesClientsModel.belongsTo(serviceModel, { foreignKey: "id_servicio", onDelete: "CASCADE" });
+
