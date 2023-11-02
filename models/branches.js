@@ -1,9 +1,13 @@
 import { DataTypes, Sequelize } from "sequelize";
+import 'dotenv/config'
+
+const PASSWORD = process.env.PASSWORD
 
 
-const sequelize = new Sequelize('TPdsw', 'root', '', {
+const sequelize = new Sequelize('TPdsw', 'root', PASSWORD, {
   host: 'localhost',
-  dialect: 'mysql'
+  dialect: 'mysql',
+  port: 3306
 });
 
 try {

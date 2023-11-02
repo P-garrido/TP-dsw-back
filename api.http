@@ -143,7 +143,7 @@ Content-Type: application/json
 }
 
 ### actualizar una sucursal [nombre]
-PATCH http://localhost:1234/branches/25
+PATCH http://localhost:1234/branches/8
 Content-Type: application/json
 
 {
@@ -152,7 +152,7 @@ Content-Type: application/json
 
 
 ### obtener una sucursal por id
-GET http://localhost:1234/branches/1/
+GET http://localhost:1234/branches/8/
 
 ### borrar una sucursal
-DELETE http://localhost:1234/branches/18
+DELETE http://localhost:1234/branches/8
