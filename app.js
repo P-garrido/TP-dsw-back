@@ -9,7 +9,6 @@ export const createApp = ({
 }) => {
   const app = express();
   app.use(json());
-  app.disable('x-powered-by');
 
 
 

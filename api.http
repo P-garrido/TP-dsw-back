@@ -7,7 +7,7 @@ GET http://localhost:1234/services
 
 ### Buscar un servicio por id
 
-GET http://localhost:1234/services/6
+GET http://localhost:1234/services/58
 
 
 ### Crear un servicio
@@ -16,14 +16,14 @@ POST http://localhost:1234/services
 Content-Type: application/json
 
 {
-  "description":"erere",
+  "description":"Pintado de casas",
   "hourValue":7400
 }
 
 
 ### Actualizar un servicio
 
-PATCH http://localhost:1234/services/6
+PATCH http://localhost:1234/services/58
 Content-Type: application/json
 
 {
@@ -33,5 +33,5 @@ Content-Type: application/json
 
 ### Borrar un servicio
 
-DELETE http://localhost:1234/services/45
+DELETE http://localhost:1234/services/58
 
