@@ -1,4 +1,5 @@
 import { OrderProduct } from '../models/order-products.js';
+import { userModel } from '../models/users.js';
 
 export class OrdersController {
   constructor({ orderModel }) {
@@ -19,10 +20,13 @@ export class OrdersController {
   };
   getAll = async (req, res) => {
     const orders = await this.orderModel.findAll({
-      include: {
-        model: OrderProduct,
-        attributes: ['id_producto', 'cantidad'],
-      },
+      include: [
+        {
+          model: OrderProduct,
+          attributes: ['id_producto', 'cantidad'],
+        },
+        { model: userModel },
+      ],
     });
 
     if (orders.length > 0) {
