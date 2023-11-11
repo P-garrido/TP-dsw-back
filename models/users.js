@@ -1,18 +1,15 @@
-import { Sequelize, DataTypes } from 'sequelize'
-import 'dotenv/config'
+import { Sequelize, DataTypes } from 'sequelize';
+import 'dotenv/config';
+import { servicesClientsModel } from './services-clients.js';
+import { OrdersModel } from './orders.js';
 
-const PASSWORD = process.env.PASSWORD
-
-
-
-
+const PASSWORD = process.env.PASSWORD;
 
 const sequelize = new Sequelize('TPdsw', 'root', PASSWORD, {
   host: 'localhost',
   dialect: 'mysql',
-  port: 3306
-})
-
+  port: 3306,
+});
 
 try {
   await sequelize.authenticate();
@@ -20,8 +17,6 @@ try {
 } catch (error) {
   console.error('Unable to connect to the database:', error);
 }
-
-
 
 export const userModel = sequelize.define(
   'Usuario',
@@ -69,3 +64,10 @@ export const userModel = sequelize.define(
   }
 );
 
+userModel.hasMany(servicesClientsModel, { foreignKey: 'id_usuario' });
+servicesClientsModel.belongsTo(userModel, { foreignKey: 'id_usuario' });
+userModel.hasMany(OrdersModel, { foreignKey: 'id_cliente' });
+OrdersModel.belongsTo(userModel, {
+  foreignKey: 'id_cliente',
+  onDelete: 'CASCADE',
+});
