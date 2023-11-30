@@ -1,4 +1,5 @@
 import { URL } from 'url';
+
 export class ImageController {
   getOneImage = async (req, res) => {
     const id = req.params.id;
@@ -9,7 +10,8 @@ export class ImageController {
     res.sendFile(imgPath);
   };
   uploadImg = async (req, res) => {
-    console.log(req);
+    await pc.uploadImg(req.file.originalname, req.body.id);
+    console.log(req.file);
     if (req.file) {
       res.json({ message: 'enviado correctamnte' });
     }

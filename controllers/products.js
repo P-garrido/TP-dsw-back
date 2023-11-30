@@ -1,5 +1,5 @@
 //importar validadores
-
+import { Op } from 'sequelize';
 export class ProductController {
   constructor({ productModel }) {
     this.productModel = productModel;
@@ -30,6 +30,22 @@ export class ProductController {
     const name_prod = req.params.name_prod;
     const product = await this.productModel.findOne({
       where: { nombre_producto: name_prod },
+    });
+    if (product != null) {
+      res.json(product);
+    } else {
+      res.status(404).send({ message: 'Product not found' });
+    }
+  };
+
+  getProductByDescription = async (req, res) => {
+    const desc_prod = req.params.desc;
+    const product = await this.productModel.findAll({
+      where: {
+        nombre_producto: {
+          [Op.like]: `%${desc_prod}%`,
+        },
+      },
     });
     if (product != null) {
       res.json(product);
@@ -115,5 +131,13 @@ export class ProductController {
     } else {
       res.status(400).json({ message: 'No se pudo actualizar el stock' });
     }
+  };
+  uploadImg = async (filename, id) => {
+    const imgPath = new URL(`../public/uploads/${filename}`, import.meta.url)
+      .pathname;
+    await this.productModel.update(
+      { imagen: imgPath },
+      { where: { id_producto: id } }
+    );
   };
 }
