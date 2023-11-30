@@ -1,5 +1,8 @@
 import { userModel } from "../models/users.js";
 import { validatePartialService, validateService } from "../schemas/services.js";
+import { Op } from 'sequelize';
+
+
 
 
 export class ServicesController {
@@ -95,6 +98,24 @@ export class ServicesController {
       console.log(e);
     }
 
+  }
+
+
+  filter = async (req, res) => {
+    try {
+      const filter = req.params.descService;
+      const services = await this.serviceModel.findAll({
+        where: {
+          desc_servicio: {
+            [Op.like]: `%${filter}%`,
+          },
+        },
+      });
+      res.json(services);
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
 }

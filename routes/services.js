@@ -8,7 +8,8 @@ export const createServiceRouter = ({ serviceModel }) => {
   const serviceController = new ServicesController({ serviceModel });
 
   servicesRouter.get('/', serviceController.getAll);
-  servicesRouter.get('/:id', serviceController.getById);
+  //servicesRouter.get('/:id', serviceController.getById);
+  servicesRouter.get('/:descService', serviceController.filter);
   servicesRouter.post('/', validateToken, serviceController.create);
   servicesRouter.patch('/:id', validateToken, serviceController.update);
   servicesRouter.delete('/:id', validateToken, serviceController.delete);
