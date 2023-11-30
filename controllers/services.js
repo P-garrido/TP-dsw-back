@@ -39,7 +39,9 @@ export class ServicesController {
   }
 
   create = async (req, res) => {
-    const result = validateService(req.body);
+    const result = validateService(req.body.service);
+    console.log(result);
+    console.log(req.body);
     if (!result.success) {
       return res.status(404).json({ error: JSON.parse(result.error.message) });
     }
@@ -75,7 +77,7 @@ export class ServicesController {
   }
 
   update = async (req, res) => {
-    const result = validatePartialService(req.body);
+    const result = validatePartialService(req.body.service);
     if (!result.success) {
       return res.status(404).json({ error: JSON.parse(result.error.message) });
     }

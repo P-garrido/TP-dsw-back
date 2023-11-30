@@ -53,7 +53,7 @@ export class ServicesClientsController {
         id_usuario: result.data.idCli,
         fecha_servicio: result.data.date,
         cant_horas: result.data.hourAmmount,
-        mensaje_cliente: result.data.clientMsg
+        mensaje_cliente: result.data.clientMessage
       });
       res.status(201).json(newServiceClient);
     }
