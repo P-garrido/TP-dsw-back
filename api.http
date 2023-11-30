@@ -3,11 +3,10 @@
 ### Buscar todos los servicios
 
 GET http://localhost:1234/services
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODQzMTY5NCwiZXhwIjoxNjk4NDMyMjk0fQ.DukxkiUJs2aSMmRuKBcd3eDY-ikiVjgmpzA1bHdS3nM
 
 ### Buscar un servicio por id
 
-GET http://localhost:1234/services/3
+GET http://localhost:1234/services/man
 
 
 ### Crear un servicio
@@ -25,11 +24,11 @@ Content-Type: application/json
 
 PATCH http://localhost:1234/services/3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODk2MjQ5NSwiZXhwIjoxNjk4OTYzMDk1fQ.2CS6jyPIakOmWjlbnsUYEl_58ynnRzcR8OGLvl3Lwg4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTcwMTM2NzYwOSwiZXhwIjoxNzAxMzY4MjA5fQ.AcyK18jJFMdB57GAQVrn_h5NJyFQfIvVrOFnf5LYOVc
 
 {
   "hourValue":53,
-  "longDescription":"Limpiamos tu pileta dos veces por semana"
+  "longDescription":"Limpiamos tu pileta dos veces por semana!"
 }
 
 
