@@ -14,15 +14,19 @@ export class ProductController {
     }
   };
 
-  getProductById = async (req, res) => {
-    const id = req.params.id;
-    const product = await this.productModel.findOne({
-      where: { id_producto: id },
-    });
-    if (product != null) {
-      res.json(product);
+  getProductsByIds = async (req, res) => {
+    const products = req.body.products;
+    const productsSearched = [];
+    for (let product of products) {
+      const searchedProduct = await this.productModel.findOne({
+        where: { id_producto: product.id_producto },
+      });
+      productsSearched.push(searchedProduct);
+    }
+    if (productsSearched.length > 0) {
+      res.json(productsSearched);
     } else {
-      res.status(404).send({ message: 'Product not found' });
+      res.status(404).send({ message: 'Products not found' });
     }
   };
 

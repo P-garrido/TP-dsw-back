@@ -7,7 +7,7 @@ export const createProductRouter = ({ productModel }) => {
   const productController = new ProductController({ productModel });
 
   productRouter.get('/', productController.getAllProducts);
-  // productRouter.get('/:id', productController.getProductById);
+  productRouter.post('/get_products', productController.getProductsByIds);
   productRouter.get(
     '/nombre_producto/:name_prod',
     productController.getProductByName
