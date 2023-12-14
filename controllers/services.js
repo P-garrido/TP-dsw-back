@@ -13,8 +13,8 @@ export class ServicesController {
       const services = await this.serviceModel.findAll();
       res.json(services);
     }
-    catch (e) {
-      console.log(e);
+    catch (error) {
+      res.status(400).json({error: 'error buscando los servicios'})
     }
   }
 
@@ -29,8 +29,8 @@ export class ServicesController {
       res.json(service);
 
     }
-    catch (e) {
-      console.log(e);
+    catch (error) {
+      res.status(400).json({error: 'error buscando el servicio'})
     }
 
   }
@@ -44,8 +44,8 @@ export class ServicesController {
       const newService = await this.serviceModel.create({ desc_servicio: result.data.description, precio_por_hora: result.data.hourValue, descripcion: result.data.longDescription });
       res.status(201).json(newService);
     }
-    catch (e) {
-      console.log(e);
+    catch (error) {
+      res.status(400).json({error: 'error creando el servicio'})
     }
 
 
@@ -64,8 +64,8 @@ export class ServicesController {
       }
       res.json({ message: "Servicio eliminado" });
     }
-    catch (e) {
-      console.log(e);
+    catch (error) {
+      res.status(400).json({error: 'error eliminando el servicio'})
     }
 
   }
@@ -90,8 +90,8 @@ export class ServicesController {
       }
       res.json({ message: "Servicio actualizado" });
     }
-    catch (e) {
-      console.log(e);
+    catch (error) {
+      res.status(400).json({error: 'error actualizando el servicio'})
     }
 
   }

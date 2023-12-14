@@ -15,8 +15,8 @@ export class ServicesClientsController {
       const servicesClients = await this.servicesClientsModel.findAll({ include: [{ model: userModel }, { model: serviceModel }] });
       res.json(servicesClients);
     }
-    catch (e) {
-      console.log(e);
+    catch (error) {
+      res.status(400).json({error: 'error buscando las instancias'})
     }
   }
 
@@ -35,8 +35,8 @@ export class ServicesClientsController {
       });
       res.json(serviceClient);
     }
-    catch (e) {
-      console.log(e);
+    catch (error) {
+      res.status(400).json({error: 'error buscando la instancia'})
     }
   }
 
@@ -57,8 +57,8 @@ export class ServicesClientsController {
       });
       res.status(201).json(newServiceClient);
     }
-    catch (e) {
-      console.log(e);
+    catch (error) {
+      res.status(400).json({error: 'error registrando la contratación'})
     }
   }
 
@@ -80,8 +80,8 @@ export class ServicesClientsController {
       }
       res.json({ message: "Servicio del cliente eliminado" });
     }
-    catch (e) {
-      console.log(e);
+    catch (error) {
+      res.status(400).json({error: 'error en la eliminación'})
     }
   }
 
@@ -111,8 +111,8 @@ export class ServicesClientsController {
       }
       res.json({ message: "Servicio actualizado" });
     }
-    catch (e) {
-      console.log(e);
+    catch (error) {
+      res.status(400).json({error: 'error en la actualización'})
     }
   }
 }
