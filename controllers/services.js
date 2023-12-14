@@ -1,5 +1,8 @@
 import { userModel } from "../models/users.js";
 import { validatePartialService, validateService } from "../schemas/services.js";
+import { Op } from 'sequelize';
+
+
 
 
 export class ServicesController {
@@ -36,7 +39,9 @@ export class ServicesController {
   }
 
   create = async (req, res) => {
-    const result = validateService(req.body);
+    const result = validateService(req.body.service);
+    console.log(result);
+    console.log(req.body);
     if (!result.success) {
       return res.status(404).json({ error: JSON.parse(result.error.message) });
     }
@@ -71,7 +76,7 @@ export class ServicesController {
   }
 
   update = async (req, res) => {
-    const result = validatePartialService(req.body);
+    const result = validatePartialService(req.body.service);
     if (!result.success) {
       return res.status(404).json({ error: JSON.parse(result.error.message) });
     }
@@ -94,6 +99,24 @@ export class ServicesController {
       res.status(400).json({error: 'error actualizando el servicio'})
     }
 
+  }
+
+
+  filter = async (req, res) => {
+    try {
+      const filter = req.params.descService;
+      const services = await this.serviceModel.findAll({
+        where: {
+          desc_servicio: {
+            [Op.like]: `%${filter}%`,
+          },
+        },
+      });
+      res.json(services);
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
 
 }
