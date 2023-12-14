@@ -42,7 +42,6 @@ export class ServicesController {
     }
     try {
       const newService = await this.serviceModel.create({ desc_servicio: result.data.description, precio_por_hora: result.data.hourValue, descripcion: result.data.longDescription });
-      console.log(newService.id_servicio);
       res.status(201).json(newService);
     }
     catch (e) {

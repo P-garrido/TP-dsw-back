@@ -1,22 +1,7 @@
-import { Sequelize, DataTypes } from 'sequelize';
-import 'dotenv/config';
+import { DataTypes } from 'sequelize';
+import sequelize from './sequelize.js';
 import { servicesClientsModel } from './services-clients.js';
 import { OrdersModel } from './orders.js';
-
-const PASSWORD = process.env.PASSWORD;
-
-const sequelize = new Sequelize('TPdsw', 'root', PASSWORD, {
-  host: 'localhost',
-  dialect: 'mysql',
-  port: 3306,
-});
-
-try {
-  await sequelize.authenticate();
-  console.log('Connection has been established successfully.');
-} catch (error) {
-  console.error('Unable to connect to the database:', error);
-}
 
 export const userModel = sequelize.define(
   'Usuario',

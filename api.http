@@ -7,7 +7,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1Y
 
 ### Buscar un servicio por id
 
-GET http://localhost:1234/services/3
+GET http://localhost:1234/services/60
 
 
 ### Crear un servicio
@@ -91,7 +91,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1Y
 GET http://localhost:1234/users
 
 ### obtener un usuario por id
-GET http://localhost:1234/users/20
+GET http://localhost:1234/users/2
 
 ### borrar un usuario
 DELETE http://localhost:1234/users/20
@@ -157,7 +157,7 @@ Content-Type: application/json
 
 
 ### obtener una sucursal por id
-GET http://localhost:1234/branches/8/
+GET http://localhost:1234/branches/12/
 
 ### borrar una sucursal
 DELETE http://localhost:1234/branches/8

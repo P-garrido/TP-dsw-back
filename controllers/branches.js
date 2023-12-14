@@ -36,8 +36,6 @@ export class BranchesController {
     const result = branchSchema.safeParse(req.body);
 
     if (!result.success) {
-      // es standard de REST que cuando hay un error de validación se retorne status 400
-      // y el detalle del error en formato JSON
       return res.status(400).json({
         error: JSON.parse(result.error.message)
       });
@@ -49,11 +47,9 @@ export class BranchesController {
         direccion: result.data.direccion
       });
 
-      // es standard de REST que cuando se crea un recurso se retorne 201 y el recurso creado
       res.status(201).json(instance);
     }
-    catch (e) {
-      console.log(this.model);
+    catch (error) {
       res.status(400).json({ error: 'Error al crear'});
     }
   }
@@ -70,7 +66,6 @@ export class BranchesController {
         return res.status(404).json();
       }
 
-      // es standard de REST que cuando se elimina un recurso se retorne 204 sin contenido/body
       res.status(204).json();
     }
     catch (e) {
@@ -88,19 +83,16 @@ export class BranchesController {
 
     const id = req.params.id;
     try {
-      // en rest, los PATCH pueden ser parciales, es decir, no es necesario enviar todos los campos
-      // por eso, se usa el partial() en el schema
       const result = await this.model.update(req.body, {where: { id_sucursal: id }});
 
       if (result == 0) {
         res.status(404).json();
       }
 
-      // es standard de REST que cuando se actualiza un recurso se retorne el recurso actualizado
       const instance = await this.model.findOne({where: { id_sucursal: id }});
       res.status(200).json(instance);
     }
-    catch (e) {
+    catch (error) {
       res.status(400).json({ error: 'Error al actualizar'});
     }
 

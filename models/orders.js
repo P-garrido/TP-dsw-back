@@ -1,14 +1,6 @@
-import { Sequelize, Op, Model, DataTypes, NOW, QueryTypes } from 'sequelize';
-import 'dotenv/config';
+import {  Op, Model, DataTypes, NOW, QueryTypes, Sequelize } from 'sequelize';
 import { userModel } from './users.js';
-
-const PASSWORD = process.env.PASSWORD;
-
-const sequelize = new Sequelize('tpdsw', 'root', PASSWORD, {
-  host: 'localhost',
-  dialect: 'mysql',
-  port: 3306,
-});
+import sequelize from './sequelize.js';
 
 export const OrdersModel = sequelize.define(
   'pedidos',
