@@ -1,0 +1,162 @@
+////Requests de servicios
+
+### Buscar todos los servicios
+
+GET http://localhost:1234/services
+
+### Buscar un servicio por id
+
+GET http://localhost:1234/services/3
+
+
+### Crear un servicio
+
+POST http://localhost:1234/services
+Content-Type: application/json
+
+{
+  "description":"erere",
+  "hourValue":7400
+}
+
+
+### Actualizar un servicio
+
+PATCH http://localhost:1234/services/3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTcwMTM2NzYwOSwiZXhwIjoxNzAxMzY4MjA5fQ.AcyK18jJFMdB57GAQVrn_h5NJyFQfIvVrOFnf5LYOVc
+
+{
+  "hourValue":53,
+  "longDescription":"Limpiamos tu pileta dos veces por semana!"
+}
+
+
+### Borrar un servicio
+
+DELETE http://localhost:1234/services/37
+
+//// Requests de Servicios-Clientes
+
+
+### Buscar todos los servicios de los clientes
+
+GET http://localhost:1234/services-clients
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODk2MTMzMCwiZXhwIjoxNjk4OTYxOTMwfQ.TpAGVx9WmzvO67b5fPlyTlO5A5WAV2UYwpzG2taEJJ0
+
+
+### Buscar un servicio de un cliente por id
+
+GET http://localhost:1234/services-clients/3/1/2023-10-11T21:15:20.000Z
+
+
+
+### Crear un nuevo servicio de un cliente
+
+POST http://localhost:1234/services-clients
+Content-Type: application/json
+
+{
+  "idServ": 6,
+  "idCli":2,
+  "date":"2024-10-08T15:32:00.000Z",
+  "hourAmmount":3
+}
+
+
+### Borrar un servicio de un cliente por id
+
+DELETE http://localhost:1234/services-clients/6/2/2024-10-08T15:32:00.000Z
+
+
+
+### Actualizar un servicio
+
+PATCH http://localhost:1234/services-clients/3/1/2023-10-19T08:00:00.000Z
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Imp1YW4yMyIsInBhc3N3b3JkIjoiMTIzNCIsImlhdCI6MTY5ODk2MTMzMCwiZXhwIjoxNjk4OTYxOTMwfQ.TpAGVx9WmzvO67b5fPlyTlO5A5WAV2UYwpzG2taEJJ0
+
+
+{
+  "hourAmmount":5
+}
+
+
+
+
+//// Requests de Usuarios
+
+### obtener todos los usuarios
+GET http://localhost:1234/users
+
+### obtener un usuario por id
+GET http://localhost:1234/users/2
+
+### borrar un usuario
+DELETE http://localhost:1234/users/20
+
+### agregar un usuario
+POST http://localhost:1234/users
+Content-Type: application/json
+
+{
+    "nombre_usuario": "francisco01",
+    "clave": "12345",
+    "email": "francisco@gmail",
+    "telefono": "123456",
+    "nombre": "Franciscoooooo",
+    "apellido": "Figueroa Casas",
+    "direccion": "Newbery 9063",
+    "tipo_usuario": 2
+  }
+
+### actualizar un usuario
+PATCH http://localhost:1234/users/20
+Content-Type: application/json
+
+{
+    "direccion": "aaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+
+
+
+//// Requests de Login
+
+###Post login
+POST http://localhost:1234/login
+Content-Type: application/json
+
+{
+  "nombre_usuario": "juan23",
+  "clave": "1234"
+}
+
+//// Requests de sucursales
+
+### obtener todas las sucursales
+GET http://localhost:1234/branches
+
+
+### crear una sucursal
+POST http://localhost:1234/branches
+Content-Type: application/json
+
+{
+  "nombre": "Sucursal 3",
+  "direccion": "Av. Siempre Viva 124"
+}
+
+### actualizar una sucursal [nombre]
+PATCH http://localhost:1234/branches/8
+Content-Type: application/json
+
+{
+  "nombre": "Sucursal 3 (actualizada)"
+}
+
+
+### obtener una sucursal por id
+GET http://localhost:1234/branches/12/
+
+### borrar una sucursal
+DELETE http://localhost:1234/branches/8
