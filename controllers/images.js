@@ -10,7 +10,6 @@ export class ImageController {
     res.sendFile(imgPath);
   };
   uploadImg = async (req, res) => {
-    await pc.uploadImg(req.file.originalname, req.body.id);
     console.log(req.file);
     if (req.file) {
       res.json({ message: 'enviado correctamnte' });
