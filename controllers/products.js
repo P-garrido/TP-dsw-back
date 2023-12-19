@@ -30,6 +30,18 @@ export class ProductController {
     }
   };
 
+  getProductById = async (req, res) => {
+    const id = req.params.id;
+    const product = await this.productModel.findOne({
+      where: { id_producto: id },
+    });
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).send({ message: 'Products not found' });
+    }
+  };
+
   getProductByName = async (req, res) => {
     const name_prod = req.params.name_prod;
     const product = await this.productModel.findOne({
