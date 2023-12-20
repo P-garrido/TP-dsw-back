@@ -21,7 +21,6 @@ const productSchema = z.object({
       required_error: 'El precio es requerido.',
     })
     .positive(),
-  imagen: z.string(),
 });
 
 export function validateProduct(product) {

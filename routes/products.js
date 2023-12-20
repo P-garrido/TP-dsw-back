@@ -21,15 +21,15 @@ export const createProductRouter = ({ productModel }) => {
   );
   productRouter.patch(
     '/:id',
-    validateToken,
+
     productController.updateProductStock
   );
   productRouter.delete(
     '/:id',
-    validateToken,
+
     productController.deleteProductById
   );
-  productRouter.post('/', validateToken, productController.createProduct);
-  productRouter.patch('/', validateToken, productController.updateProduct);
+  productRouter.post('/', productController.createProduct);
+  productRouter.patch('/', productController.updateProduct);
   return productRouter;
 };

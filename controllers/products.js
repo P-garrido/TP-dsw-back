@@ -119,8 +119,8 @@ export class ProductController {
     const result = validateProduct({
       nombre_producto: req.body.nombre_producto,
       desc_producto: req.body.desc_producto,
-      stock: req.body.stock,
-      precio: req.body.precio,
+      stock: parseInt(req.body.stock),
+      precio: parseInt(req.body.precio),
       imagen: req.body.imagen,
     });
     if (!result.success) {
