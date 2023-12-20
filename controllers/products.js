@@ -121,7 +121,6 @@ export class ProductController {
       desc_producto: req.body.desc_producto,
       stock: parseInt(req.body.stock),
       precio: parseInt(req.body.precio),
-      imagen: req.body.imagen,
     });
     if (!result.success) {
       return res.status(404).json({ error: JSON.parse(result.error.message) });
