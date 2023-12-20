@@ -17,7 +17,7 @@ export class ServicesController {
       res.json(services);
     }
     catch (error) {
-      res.status(400).json({error: 'error buscando los servicios'})
+      res.status(400).json({ error: 'error buscando los servicios' })
     }
   }
 
@@ -33,15 +33,13 @@ export class ServicesController {
 
     }
     catch (error) {
-      res.status(400).json({error: 'error buscando el servicio'})
+      res.status(400).json({ error: 'error buscando el servicio' })
     }
 
   }
 
   create = async (req, res) => {
     const result = validateService(req.body.service);
-    console.log(result);
-    console.log(req.body);
     if (!result.success) {
       return res.status(404).json({ error: JSON.parse(result.error.message) });
     }
@@ -50,7 +48,7 @@ export class ServicesController {
       res.status(201).json(newService);
     }
     catch (error) {
-      res.status(400).json({error: 'error creando el servicio'})
+      res.status(400).json({ error: 'error creando el servicio' })
     }
 
 
@@ -70,7 +68,7 @@ export class ServicesController {
       res.json({ message: "Servicio eliminado" });
     }
     catch (error) {
-      res.status(400).json({error: 'error eliminando el servicio'})
+      res.status(400).json({ error: 'error eliminando el servicio' })
     }
 
   }
@@ -96,7 +94,7 @@ export class ServicesController {
       res.json({ message: "Servicio actualizado" });
     }
     catch (error) {
-      res.status(400).json({error: 'error actualizando el servicio'})
+      res.status(400).json({ error: 'error actualizando el servicio' })
     }
 
   }
