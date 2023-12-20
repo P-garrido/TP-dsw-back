@@ -1,5 +1,10 @@
 //importar validadores
 import { Op } from 'sequelize';
+import {
+  validatePartialProduct,
+  validateProduct,
+} from '../schemas/products.js';
+
 export class ProductController {
   constructor({ productModel }) {
     this.productModel = productModel;
@@ -87,18 +92,33 @@ export class ProductController {
   };
 
   createProduct = async (req, res) => {
-    const { nombre_producto, desc_producto, stock, precio, imagen } = req.body;
-    const newProduct = await this.productModel.create({
-      nombre_producto,
-      desc_producto,
-      stock,
-      precio,
-      imagen,
+    const result = validateProduct({
+      nombre_producto: req.body.nombre_producto,
+      desc_producto: req.body.desc_producto,
+      stock: req.body.stock,
+      precio: req.body.precio,
+      imagen: req.body.imagen,
     });
-    if (newProduct) {
-      res.status(201).json(newProduct);
-    } else {
-      res.status(400).json({ message: 'No se pudo crear el producto' });
+    if (!result.success) {
+      return res.status(404).json({ error: JSON.parse(result.error.message) });
+    }
+    try {
+      const { nombre_producto, desc_producto, stock, precio, imagen } =
+        req.body;
+      const newProduct = await this.productModel.create({
+        nombre_producto,
+        desc_producto,
+        stock,
+        precio,
+        imagen,
+      });
+      if (newProduct) {
+        res.status(201).json(newProduct);
+      } else {
+        res.status(400).json({ message: 'No se pudo crear el producto' });
+      }
+    } catch (error) {
+      res.status(400).json({ error: 'error creando el servicio' });
     }
   };
 
@@ -111,21 +131,25 @@ export class ProductController {
       precio,
       imagen,
     } = req.body;
-    const newProduct = await this.productModel.findOne({
-      where: { id_producto: id_producto },
-    });
-    newProduct.set({
-      nombre_producto: nombre_producto,
-      desc_producto: desc_producto,
-      stock: stock,
-      precio: precio,
-      imagen: imagen,
-    });
-    await newProduct.save();
-    if (newProduct) {
-      res.status(201).json(newProduct);
-    } else {
-      res.status(400).json({ message: 'No se pudo actualizar el producto' });
+    try {
+      const newProduct = await this.productModel.findOne({
+        where: { id_producto: id_producto },
+      });
+      newProduct.set({
+        nombre_producto: nombre_producto,
+        desc_producto: desc_producto,
+        stock: stock,
+        precio: precio,
+        imagen: imagen,
+      });
+      await newProduct.save();
+      if (newProduct) {
+        res.status(201).json(newProduct);
+      } else {
+        res.status(400).json({ message: 'No se pudo actualizar el producto' });
+      }
+    } catch (error) {
+      res.status(400).json({ error: 'error creando el servicio' });
     }
   };
 
