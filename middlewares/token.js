@@ -1,6 +1,5 @@
 import pkg from 'jsonwebtoken';
 import { config } from 'dotenv';
-
 config();
 
 const jwt = pkg;

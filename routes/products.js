@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { ProductController } from '../controllers/products.js';
+import { validateToken } from '../middlewares/token.js';
 
 export const createProductRouter = ({ productModel }) => {
   const productRouter = Router();
@@ -18,9 +19,17 @@ export const createProductRouter = ({ productModel }) => {
     '/desc_producto/:desc',
     productController.getProductByDescription
   );
-  productRouter.patch('/:id', productController.updateProductStock);
-  productRouter.delete('/:id', productController.deleteProductById);
-  productRouter.post('/', productController.createProduct);
-  productRouter.patch('/', productController.updateProduct);
+  productRouter.patch(
+    '/:id',
+    validateToken,
+    productController.updateProductStock
+  );
+  productRouter.delete(
+    '/:id',
+    validateToken,
+    productController.deleteProductById
+  );
+  productRouter.post('/', validateToken, productController.createProduct);
+  productRouter.patch('/', validateToken, productController.updateProduct);
   return productRouter;
 };
